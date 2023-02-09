@@ -1,0 +1,115 @@
+{
+    "DataTypes": [
+        "CDD",
+        "Competition",
+        "Macro Data",
+        "Market Data",
+        "Market Reports",
+        "Trends",
+        "Value Chain"
+    ],
+    "Geography": [
+        "US",
+        "UK",
+        "GSA",
+        "WEM",
+        "MENA",
+        "ASEAN",
+        "Japan",
+        "Med",
+        "Canada"
+    ],
+    "TOP": [
+        "CDD",
+        "BD"
+    ],
+    "Years": [
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+    ],
+    "accountname": [
+        {
+            "Account_name": "PVC",
+            "Capital_iq": "pvc.com"
+        },
+        {
+            "Account_name": "Strategic Investor",
+            "Capital_iq": "www.si.com"
+        },
+        {
+            "Account_name": "confidential",
+            "Capital_iq": "www.confi.com"
+        }
+    ],
+    "partners": [
+        "Lucy Tang<Lucy.Tang1@parthenon.ey.com>",
+        "Shweta Dudi<shweta.dudi@gds.ey.com>",
+        "Rupanshu Ahuja<rupanshu.ahuja@gds.ey.com>"
+    ],
+    "project_leads": [
+        "Prakhar Rastogi<prakhar.rastogi1@gds.ey.com>",
+        "Mitali Chopra<Mitali.Chopra@gds.ey.com>",
+        "Varun Arora<varun.arora@gds.ey.com>",
+        "Anuj Bhatia<Anuj.Bhatia1@gds.ey.com>"
+    ],
+    "sectors": [
+        {
+            "CPR": {
+                "Segments": [
+                    "Convenience Store",
+                    "Food",
+                    "Bags",
+                    "Disinfectants and Pet Hygiene",
+                    "Agro equipments",
+                    "Gym and Fitness centers"
+                ],
+                "Subsector": [
+                    "Retail",
+                    "F&B",
+                    "HPC",
+                    "Agriculture",
+                    "Consumer Services"
+                ]
+            }
+        },
+        {
+            "TMT": {
+                "Segments": [
+                    "E-Commerce",
+                    "Software and Services"
+                ],
+                "Subsector": [
+                    "Retail"
+                ]
+            }
+        },
+        {
+            "Restraurent": {
+                "Segments": [
+                    "Food"
+                ],
+                "Subsector": [
+                    "F&B"
+                ]
+            }
+        }
+    ],
+    "team_members": [
+        "Sanya Singla<Sanya.Singla@gds.ey.com>",
+        "Gagan Anand<Gagan.Anand1@gds.ey.com>"
+    ]
+}

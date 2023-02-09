@@ -1,0 +1,22 @@
+{
+    "projects": [
+        {
+            "Project ID": "TE.ME.14",
+            "Project Sector": "Technology Media and Entertainment",
+            "Project Sub Sector": "Media and Entertainment",
+            "Project Segment": "Broadcasting",
+            "Project Type": "Strategy",
+            "Project Start Date": "2020-12-26",
+            "RMT Project Name": "Tmt_rmt",
+            "Project Name": "Tmt_test",
+            "Project Partner": [
+                "Karun Barach<Karun.Barach@gds.ey.com>"
+            ],
+            "Project Account": "Strategic Investor",
+            "Project Lead": "Varun Arora<varun.arora@gds.ey.com>",
+            "Project Team Member": [
+                "Chinmay Ojha<Chinmay.Ojha@gds.ey.com>"
+            ]
+        }
+    ]
+}

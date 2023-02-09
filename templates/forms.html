@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+{% import "bootstrap/wtf.html" as wtf %}
+<head>
+    <meta charset="UTF-8">
+    <title>KM Platform</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<h1>Welcome to KM Platform</h1>
+<link rel="stylesheet" href="form.css">
+<div class="container">
+  <div class="dropdown">
+
+      <ul class="dropdown-menu"></ul>
+
+<form method="post">
+    {{form.hidden_tag()}}
+    {{form.Geography.label}}{{form.Geography}}
+    <br>
+    {{form.Sector.label}}{{form.Sector}}
+    <br>
+    {{form.Sub_Sector.label}}{{form.Sub_Sector}}
+    <br>
+    {{form.Segments.label}}{{form.Segments}}
+    <br>
+    {{form.Year.label}}{{form.Year}}
+    <br>
+    Any other Feedback?
+    <br>
+    {{form.feedback}}
+    <br>
+    {{form.submit()}}
+
+</form>
+
+</body>
+</html>
+
+
+

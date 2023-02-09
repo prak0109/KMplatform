@@ -1,0 +1,215 @@
+{
+    "DataTypes": [
+        "CDD",
+        "Competition",
+        "Macro Data",
+        "Market Data",
+        "Market Reports",
+        "Trends",
+        "Value Chain"
+    ],
+    "Geography": [
+        "US",
+        "UK",
+        "GSA",
+        "WEM",
+        "MENA",
+        "ASEAN",
+        "Japan",
+        "Med",
+        "Canada"
+    ],
+    "TOP": [
+        "CDD",
+        "BD",
+        "Market Study",
+        "Strategy",
+        "VDD",
+        "White papers",
+        "Modelling",
+        "Pricing Analysis"
+    ],
+    "Years": [
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+    ],
+    "accountname": [
+        {
+            "Account_name": "PE/VC",
+            "Capital_iq": "pvc.com"
+        },
+        {
+            "Account_name": "Strategic Investor",
+            "Capital_iq": "www.si.com"
+        },
+        {
+            "Account_name": "Confidential",
+            "Capital_iq": "www.confi.com"
+        },
+        {
+            "Account_name": "Strategic Investor_test",
+            "Capital_iq": "www.sitest.com"
+        }
+    ],
+    "partners": [
+        "Lucy Tang<Lucy.Tang1@parthenon.ey.com>",
+        "Shweta Dudi<shweta.dudi@gds.ey.com>",
+        "Rupanshu Ahuja<rupanshu.ahuja@gds.ey.com>",
+        "Karun Barach<Karun.Barach@gds.ey.com>"
+    ],
+    "project_leads": [
+        "Prakhar Rastogi<prakhar.rastogi1@gds.ey.com>",
+        "Mitali Chopra<Mitali.Chopra@gds.ey.com>",
+        "Varun Arora<varun.arora@gds.ey.com>",
+        "Anuj Bhatia<Anuj.Bhatia1@gds.ey.com>"
+    ],
+    "sectors": {
+        "Consumer Products & Retail": {
+            "F&B": [
+                "Dairy",
+                "Food- Snacks",
+                "Food- Bakery",
+                "Confectionary",
+                "Edible oils",
+                "Food- Processed Meat",
+                "Food- others",
+                "Soft Drinks",
+                "Juices",
+                "Alcoholic Beverages",
+                "Pet Food",
+                "Bottled water"
+            ],
+            "HPC": [
+                "Bottled water",
+                "Baby Care",
+                "Dental care/ Vitamin Supplements",
+                "General Personal Care",
+                "Beauty Care",
+                "Skin Care",
+                "Fragnances",
+                "Sportswear",
+                "Luggage and Bags",
+                "Cleaning Products",
+                "Household Paper Products",
+                "Disinfectants and Pet Hygiene"
+            ],
+            "Restaurant": [
+                "Foodservice equipment",
+                "Food distributor",
+                "QSR",
+                "Fine Dining"
+            ],
+            "Retail": [
+                "E-Commerce",
+                "Convenience Store",
+                "Apparel distribution",
+                "Hyper/Supermart",
+                "Luxury goods",
+                "Entertainment",
+                "Pharmacy",
+                "Jewellery"
+            ]
+        },
+        "Education": {
+            "Government and Foundations": [
+                "Federal Educational Authorities",
+                "Foundations at the forefront of education reform",
+                "Ministries of education"
+            ],
+            "Post-secondary schooling": [
+                "Public university systems",
+                "Global research institutions",
+                "Private and nonprofit colleges and universities",
+                "Ministries of education",
+                "Vocation and education training providers"
+            ],
+            "Primary and Secondary Schooling": [
+                "State and local educational authorities",
+                "Charter, trust and voucher schools",
+                "Private K-12 schools",
+                "Other innovative education providers",
+                "Pre-K and nurseries"
+            ]
+        },
+        "Financial Services": {
+            "Banking": [
+                "Commercial Banks",
+                "Investment Bank/ Capital Market",
+                "Mortgage Banks/ Brokers",
+                "Development/ Central Banks",
+                "Others"
+            ],
+            "Insurance": [
+                "Property & Casualty",
+                "Life & Health",
+                "Others"
+            ]
+        },
+        "HS&W": {
+            "Healthcare": [
+                "Healthcare Distributors/ Vendors",
+                "Hospitals (Private and Government)",
+                "Health care Services",
+                "Research & Academic Health centres",
+                "Physician Group",
+                "Pharmacy Benefit Management/Payers",
+                "Others"
+            ],
+            "Life Sciences": [
+                "Biotechnology",
+                "Health Research(R&D)",
+                "Medical Devices",
+                "Diagnostics & Testing",
+                "Pharmaceuticals ( includes contract manufacturers)",
+                "Healthcare Information Technology",
+                "Life Sciences Tools",
+                "Others"
+            ]
+        },
+        "Technology Media and Entertainment": {
+            "Media and Entertainment": [
+                "Broadcasting",
+                "Sports and Games",
+                "OTT",
+                "Print (Books and Magazines)",
+                "Advertising",
+                "Social Media"
+            ],
+            "Technology": [
+                "Software and Services",
+                "IT consulting and other services",
+                "Data Processing and Outsourced Services",
+                "Technology Hardware and Equipment",
+                "Semiconductor and Semiconductor equipment"
+            ],
+            "Telecom": [
+                "Wireless",
+                "Fixed Wireline",
+                "Cable providers"
+            ]
+        }
+    },
+    "team_members": [
+        "Sanya Singla<Sanya.Singla@gds.ey.com>",
+        "Gagan Anand<Gagan.Anand1@gds.ey.com>",
+        "Ankit Goel<Ankit.Goel@gds.ey.com>",
+        "Rahul Singh<Rahul.Singh5@gds.ey.com>",
+        "Bhavna Mehta<Bhavna.Mehta@gds.ey.com>",
+        "Chinmay Ojha<Chinmay.Ojha@gds.ey.com>",
+        "Neelotpal Goswami<Neelotpal.Goswami@gds.ey.com>"
+    ]
+}

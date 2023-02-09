@@ -1,0 +1,291 @@
+[
+    {
+        "Filename": "abc.xlsx",
+        "Filepath": "C:\\Data\\KM\\KMtree\\CPR\\Retail\\Convenience Store",
+        "Geography": [
+            "US"
+        ],
+        "Sector": "CPR",
+        "Segments": "E-Commerce",
+        "Sub-Sector": "Retail",
+        "Year": [
+            "2008"
+        ]
+    },
+    {
+        "Filename": "3.5.1.3.1.2_ASO_Agreement_1.doc",
+        "Filepath": "C:\\Data\\KM\\KMtree\\CPR\\Retail\\Convenience Store",
+        "Geography": [
+            "US"
+        ],
+        "Sector": "CPR",
+        "Segments": "Convenience Store",
+        "Sub-Sector": "Retail",
+        "Year": [
+            "2018"
+        ]
+    },
+    {
+        "Filename": "Data_Tagging_Strategy_CPR_v01.xlsx",
+        "Filepath": "C:\\Data\\KM\\KMtree\\CPR\\Retail\\Convenience Store",
+        "Geography": [
+            "US"
+        ],
+        "Sector": "CPR",
+        "Segments": "Convenience Store",
+        "Sub-Sector": "Retail",
+        "Year": [
+            "2019",
+            "2018"
+        ]
+    },
+    {
+        "Filename": "McKesson_Specialty_Arizona_Inc_Single_Manu_REMS_SA_JUN2013.pdf",
+        "Filepath": "C:\\Data\\KM\\KMtree\\CPR\\Retail\\Convenience Store",
+        "Geography": [
+            "US"
+        ],
+        "Sector": "CPR",
+        "Segments": "Convenience Store",
+        "Sub-Sector": "Retail",
+        "Year": [
+            "2018"
+        ]
+    },
+    {
+        "Filename": "LeanIX_MSA_-_signed.pdf",
+        "Filepath": "C:\\Data\\KM\\KMtree\\CPR\\Retail\\Convenience Store",
+        "Geography": [
+            "US"
+        ],
+        "Sector": "CPR",
+        "Segments": "Convenience Store",
+        "Sub-Sector": "Retail",
+        "Year": [
+            "2018",
+            "2019"
+        ]
+    },
+    {
+        "Filename": "JMSwank_001.pdf",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Consumer Products and Retail\\HPC\\E-Commerce",
+        "Geography": [
+            "UK"
+        ],
+        "Sector": "Consumer Products and Retail",
+        "Segments": "E-Commerce",
+        "Sub-Sector": "HPC",
+        "Year": [
+            "2020"
+        ]
+    },
+    {
+        "Filename": "KM_Tracker.xlsx",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Consumer Products and Retail\\Media and Entertainment\\Food",
+        "Geography": [
+            "US"
+        ],
+        "Sector": "Consumer Products and Retail",
+        "Segments": "Food",
+        "Sub-Sector": "Media and Entertainment",
+        "Year": [
+            "2021"
+        ]
+    },
+    {
+        "Filename": "sample.xlsx",
+        "Filepath": "C:\\Data\\KM\\KMtree\\TMT\\Telecom\\Convenience Store",
+        "Geography": [
+            "US",
+            "UK"
+        ],
+        "Sector": "TMT",
+        "Segments": "Convenience Store",
+        "Sub-Sector": "Telecom",
+        "Year": [
+            "2015"
+        ]
+    },
+    {
+        "Filename": "Sector_Inventory_-_Summary.xlsx",
+        "Filepath": "C:\\Data\\KM\\KMtree\\TMT\\Telecom\\Convenience Store",
+        "Geography": [
+            "US"
+        ],
+        "Sector": "TMT",
+        "Segments": "Convenience Store",
+        "Sub-Sector": "Telecom",
+        "Year": [
+            "2016"
+        ]
+    },
+    {
+        "Filename": "sample.xlsx",
+        "Filepath": "C:\\Data\\KM\\KMtree\\TMT\\Telecom\\Convenience Store",
+        "Geography": [
+            "UK"
+        ],
+        "Sector": "TMT",
+        "Segments": "Convenience Store",
+        "Sub-Sector": "Telecom",
+        "Year": [
+            "2013,2018",
+            "2018"
+        ]
+    },
+    {
+        "Filename": "sample.xlsx",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Consumer Products and Retail\\Retail\\E-Commerce",
+        "Geography": [
+            "US"
+        ],
+        "Sector": "Consumer Products and Retail",
+        "Segments": "E-Commerce",
+        "Sub-Sector": "Retail",
+        "Year": [
+            "2013-2023",
+            "2013-2018"
+        ]
+    },
+    {
+        "Filename": "KM_Tracker.xlsx",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Consumer Products and Retail\\Retail\\E-Commerce",
+        "Geography": [
+            "US"
+        ],
+        "Sector": "Consumer Products and Retail",
+        "Segments": "E-Commerce",
+        "Sub-Sector": "Retail",
+        "Year": [
+            "2013-2018",
+            "2018"
+        ]
+    },
+    {
+        "Filename": "KM_platform.xlsx",
+        "Filepath": "C:\\Data\\KM\\KMtree\\TMT\\Media and Entertainment\\Food",
+        "Geography": [
+            "UK"
+        ],
+        "Sector": "TMT",
+        "Segments": "Food",
+        "Sub-Sector": "Media and Entertainment",
+        "Year": [
+            "2013",
+            "2018"
+        ]
+    },
+    {
+        "Filename": "Bangalore_.xlsx",
+        "Filepath": "C:\\Data\\KM\\KMtree\\TMT\\Telecom\\Food",
+        "Geography": "US",
+        "Sector": "TMT",
+        "Segments": "Food",
+        "Sub-Sector": "Telecom",
+        "Year": [
+            "2018"
+        ]
+    },
+    {
+        "Filename": "Automation_Dump.xlsx",
+        "Filepath": "C:\\Data\\KM\\KMtree\\TMT\\Telecom\\Convenience Store",
+        "Geography": "US",
+        "Sector": "TMT",
+        "Segments": "Convenience Store",
+        "Sub-Sector": "Telecom",
+        "Year": [
+            "2018"
+        ]
+    },
+    {
+        "Filename": "EY_Silverbadge.PNG",
+        "Filepath": "C:\\Data\\KM\\KMtree\\TMT\\Telecom\\Food",
+        "Geography": "US",
+        "Sector": "TMT",
+        "Segments": "Food",
+        "Sub-Sector": "Telecom",
+        "Year": [
+            "2018"
+        ]
+    },
+    {
+        "Filename": "Cashless_Claim_Form.pdf",
+        "Filepath": "C:\\Data\\KM\\KMtree\\TMT\\Telecom\\Convenience Store",
+        "Geography": "US",
+        "Sector": "TMT",
+        "Segments": "Convenience Store",
+        "Sub-Sector": "Telecom",
+        "Year": [
+            "2018"
+        ]
+    },
+    {
+        "Filename": "Taxonomy.xlsx",
+        "Filepath": "C:\\Data\\KM\\KMtree\\CPR\\Retail\\Gym and Fitness centers",
+        "Geography": "UK",
+        "Sector": "CPR",
+        "Segments": "Gym and Fitness centers",
+        "Sub-Sector": "Retail",
+        "Year": [
+            "2013"
+        ]
+    },
+    {
+        "Filename": null,
+        "Filepath": "C:\\Data\\KM\\KMtree\\CPR\\Retail\\Disinfectants and Pet Hygiene",
+        "Geography": "UK",
+        "Keyword": [
+            "Tea"
+        ],
+        "Project Name": "DDDDDD",
+        "Sector": "CPR",
+        "Segments": "Disinfectants and Pet Hygiene",
+        "Sub-Sector": "Retail",
+        "Year": [
+            "2018"
+        ]
+    },
+    {
+        "Filename": "Aadhar_card_1.pdf",
+        "Filepath": "C:\\Data\\KM\\KMtree\\CPR\\F&B\\Food",
+        "Geography": "US",
+        "Sector": "CPR",
+        "Segments": "Food",
+        "Sub-Sector": "F&B",
+        "Year": "2009-2018"
+    },
+    {
+        "Filename": "template.docx",
+        "Filepath": "C:\\Data\\KM\\KMtree\\CPR\\Retail\\Convenience Store",
+        "Geography": [
+            "US"
+        ],
+        "Keyword": [
+            "Market"
+        ],
+        "Project Name": "Test_tmt",
+        "Sector": "CPR",
+        "Segments": "Convenience Store",
+        "Sub-Sector": "Retail",
+        "Year": [
+            "2021"
+        ]
+    },
+    {
+        "Filename": "model.txt",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Restraurent\\F&B\\Food",
+        "Geography": [
+            "MENA"
+        ],
+        "Keyword": [
+            "Food and Drinks"
+        ],
+        "Project Name": "TMT_Test",
+        "Sector": "Restraurent",
+        "Segments": "Food",
+        "Sub-Sector": "F&B",
+        "Year": [
+            "2013"
+        ]
+    }
+]

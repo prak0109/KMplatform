@@ -1,0 +1,24 @@
+{
+    "emp_details": [
+        {
+            "emp_name": "Prakhar",
+            "email": "prakhar@geeksforgeeks.org",
+            "job_profile": "Full Time"
+        },
+        {
+            "emp_name": "Ankit",
+            "email": "ankit@geeksforgeeks.org",
+            "job_profile": "Full Time"
+        },
+        {
+            "emp_name": "Nikhil",
+            "email": "nikhil@geeksforgeeks.org",
+            "job_profile": "Full Time"
+        },
+        {
+            "emp_name": "Nikhil",
+            "email": "nikhil@geeksforgeeks.org",
+            "job_profile": "Full Time"
+        }
+    ]
+}

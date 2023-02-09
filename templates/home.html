@@ -1,0 +1,36 @@
+
+{% extends 'layout.html' %}
+{% block body %}
+  <div class="container">
+
+    <!-- Heading Row -->
+    <div class="row align-items-center my-5">
+      <div class="col-lg-7">
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="{{ url_for('static',filename='assets/images/robot.jpg')}}">
+      </div>
+      <!-- /.col-lg-8 -->
+      <div class="col-lg-5">
+        <h1 class="font-weight-light">KM Platform</h1>
+        <p>Welcome to Knowledge Management Platform</p>
+        <p>Strategy KM enables you to access industry-specific project information from the central repository. It is the custodian of all legacy work and current projects.</p>
+        <p>Search for SaT’s best content,expertise and share materials that can be leveraged by others.</p>
+        <a class="btn btn-warning" style="background-color: #FFFF00;
+        border: none;
+        font-weight: 500;" href="http://127.0.0.1:5000/contact_admin">Contact Admin</a>
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+    <!-- Call to Action Well -->
+    <div class="card text-white bg-secondary my-5 py-4 text-center">
+      <div class="card-body">
+        <p class="text-white m-0">Contact Admin for KM Platform to know about it's usage and access rights for the tool.</p>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+{% endblock %}

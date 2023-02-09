@@ -1,0 +1,531 @@
+[
+    {
+        "Project Name": "Testing_mark1",
+        "Datatype": [
+            "Competition"
+        ],
+        "Filename": "1.1.1.1__2073_1.pdf",
+        "Sector": "Consumer Products & Retail",
+        "Sub-Sector": "F&B",
+        "Segments": "Dairy",
+        "Year": [
+            "2020"
+        ],
+        "Geography": [
+            "US"
+        ],
+        "Keyword": [
+            "Milk Product"
+        ],
+        "Project Type": "Strategy",
+        "Partner": [
+            "Prakhar Rastogi<prakhar.rastogi1@gds.ey.com>"
+        ],
+        "Project Lead": "Yukti Arora<Yukti.Arora3@gds.ey.com>",
+        "Project Account": "Confidential",
+        "Team Member": [
+            "Ankit Goel<Ankit.Goel@gds.ey.com>"
+        ],
+        "Comments": "F&B Dairy File",
+        "Uploaded By": "Prakhar.Rastogi1@gds.ey.com",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Consumer Products & Retail\\F&B\\Dairy"
+    },
+    {
+        "Project Name": "mark2",
+        "Datatype": [
+            "Macro Data"
+        ],
+        "Filename": "1.2.2.1__2045_1.pptx",
+        "Sector": "Education",
+        "Sub-Sector": "Government and Foundations",
+        "Segments": "Federal Educational Authorities",
+        "Year": [
+            "2021"
+        ],
+        "Geography": [
+            "US"
+        ],
+        "Keyword": [
+            "School"
+        ],
+        "Project Type": "White papers",
+        "Partner": [
+            "Shweta Dudi<shweta.dudi@gds.ey.com>"
+        ],
+        "Project Lead": "Yukti Arora<Yukti.Arora3@gds.ey.com>",
+        "Project Account": "PE/VC",
+        "Team Member": [
+            "Ankit Goel<Ankit.Goel@gds.ey.com>"
+        ],
+        "Comments": "School Document",
+        "Uploaded By": "Prakhar.Rastogi1@gds.ey.com",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Education\\Government and Foundations\\Federal Educational Authorities"
+    },
+    {
+        "Project Name": "Testing_mark1",
+        "Datatype": [
+            "Macro Data"
+        ],
+        "Filename": "5864281.ppt",
+        "Sector": "Consumer Products & Retail",
+        "Sub-Sector": "HPC",
+        "Segments": "Fragnances",
+        "Year": [
+            "2021"
+        ],
+        "Geography": [
+            "US"
+        ],
+        "Keyword": [
+            "Perfume"
+        ],
+        "Project Type": "Strategy",
+        "Partner": [
+            "Prakhar Rastogi<prakhar.rastogi1@gds.ey.com>"
+        ],
+        "Project Lead": "Yukti Arora<Yukti.Arora3@gds.ey.com>",
+        "Project Account": "Confidential",
+        "Team Member": [
+            "Ankit Goel<Ankit.Goel@gds.ey.com>"
+        ],
+        "Comments": "",
+        "Uploaded By": "Prakhar.Rastogi1@gds.ey.com",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Consumer Products & Retail\\HPC\\Fragnances"
+    },
+    {
+        "Project Name": "mark2",
+        "Datatype": [
+            "CDD"
+        ],
+        "Filename": "20171220_162820.jpg",
+        "Sector": "Education",
+        "Sub-Sector": "Government and Foundations",
+        "Segments": "Federal Educational Authorities",
+        "Year": [
+            "2013"
+        ],
+        "Geography": [
+            "US"
+        ],
+        "Keyword": [
+            "test"
+        ],
+        "Project Type": "White papers",
+        "Partner": [
+            "Shweta Dudi<shweta.dudi@gds.ey.com>"
+        ],
+        "Project Lead": "Yukti Arora<Yukti.Arora3@gds.ey.com>",
+        "Project Account": "PE/VC",
+        "Team Member": [
+            "Ankit Goel<Ankit.Goel@gds.ey.com>"
+        ],
+        "Comments": "",
+        "Uploaded By": "Prakhar.Rastogi1@gds.ey.com",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Education\\Government and Foundations\\Federal Educational Authorities"
+    },
+    {
+        "Project Name": "mark2",
+        "Datatype": [
+            "CDD"
+        ],
+        "Filename": "57.jpg",
+        "Sector": "Education",
+        "Sub-Sector": "Government and Foundations",
+        "Segments": "Federal Educational Authorities",
+        "Year": [
+            "2013"
+        ],
+        "Geography": [
+            "US"
+        ],
+        "Keyword": [
+            "test"
+        ],
+        "Project Type": "White papers",
+        "Partner": [
+            "Shweta Dudi<shweta.dudi@gds.ey.com>"
+        ],
+        "Project Lead": "Yukti Arora<Yukti.Arora3@gds.ey.com>",
+        "Project Account": "PE/VC",
+        "Team Member": [
+            "Ankit Goel<Ankit.Goel@gds.ey.com>"
+        ],
+        "Comments": "",
+        "Uploaded By": "Prakhar.Rastogi1@gds.ey.com",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Education\\Government and Foundations\\Federal Educational Authorities"
+    },
+    {
+        "Project Name": "Sport_Proj",
+        "Datatype": [
+            "CDD"
+        ],
+        "Filename": "Multithreading.txt",
+        "Sector": "Technology Media and Entertainment",
+        "Sub-Sector": "Media and Entertainment",
+        "Segments": "Sports and Games",
+        "Year": [
+            "2021"
+        ],
+        "Geography": [
+            "US"
+        ],
+        "Keyword": [
+            "baseball"
+        ],
+        "Project Type": "Strategy",
+        "Partner": [
+            "Rupanshu Ahuja<rupanshu.ahuja@gds.ey.com>"
+        ],
+        "Project Lead": "Mitali Chopra<Mitali.Chopra@gds.ey.com>",
+        "Project Account": "Confidential_test",
+        "Team Member": [
+            "Ankit Goel<Ankit.Goel@gds.ey.com>"
+        ],
+        "Comments": "",
+        "Uploaded By": "Prakhar.Rastogi1@gds.ey.com",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Technology Media and Entertainment\\Media and Entertainment\\Sports and Games"
+    },
+    {
+        "Project Name": "Pilot",
+        "Datatype": [
+            "CDD"
+        ],
+        "Filename": "table-export.csv",
+        "Sector": "Consumer Products & Retail",
+        "Sub-Sector": "HPC",
+        "Segments": "Cleaning Products",
+        "Year": [
+            "2013"
+        ],
+        "Geography": [
+            "US"
+        ],
+        "Keyword": [
+            "test"
+        ],
+        "Project Type": "VDD",
+        "Partner": [
+            "Shweta Dudi<shweta.dudi@gds.ey.com>"
+        ],
+        "Project Lead": "Anuj Bhatia<Anuj.Bhatia1@gds.ey.com>",
+        "Project Account": "PE/VC",
+        "Team Member": [
+            "Rahul Singh<Rahul.Singh5@gds.ey.com>",
+            "Bhavna Mehta<Bhavna.Mehta@gds.ey.com>"
+        ],
+        "Comments": "",
+        "Uploaded By": "Prakhar.Rastogi1@gds.ey.com",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Consumer Products & Retail\\HPC\\Cleaning Products"
+    },
+    {
+        "Project Name": "mark2",
+        "Datatype": [
+            "CDD"
+        ],
+        "Filename": "Upload_v2_120221.txt",
+        "Sector": "Education",
+        "Sub-Sector": "Government and Foundations",
+        "Segments": "Federal Educational Authorities",
+        "Year": [
+            "2013"
+        ],
+        "Geography": [
+            "US"
+        ],
+        "Keyword": [
+            "hhsh"
+        ],
+        "Project Type": "White papers",
+        "Partner": [
+            "Shweta Dudi<shweta.dudi@gds.ey.com>"
+        ],
+        "Project Lead": "Yukti Arora<Yukti.Arora3@gds.ey.com>",
+        "Project Account": "PE/VC",
+        "Team Member": [
+            "Aarti Aggarwal<Aarti.Aggarwal@gds.ey.com>",
+            "Aastha Surana<Aastha.Surana1@gds.ey.com>"
+        ],
+        "Comments": "",
+        "Uploaded By": "Prakhar.Rastogi1@gds.ey.com",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Education\\Government and Foundations\\Federal Educational Authorities"
+    },
+    {
+        "Project Name": "Testing_mark1",
+        "Datatype": [
+            "Macro Data"
+        ],
+        "Filename": "app_bk.txt",
+        "Sector": "Consumer Products & Retail",
+        "Sub-Sector": "HPC",
+        "Segments": "Fragnances",
+        "Year": [
+            "2015"
+        ],
+        "Geography": [
+            "UK"
+        ],
+        "Keyword": [
+            "hhjjssj ssjjs"
+        ],
+        "Project Type": "Strategy",
+        "Partner": [
+            "Prakhar Rastogi<prakhar.rastogi1@gds.ey.com>"
+        ],
+        "Project Lead": "Yukti Arora<Yukti.Arora3@gds.ey.com>",
+        "Project Account": "Confidential",
+        "Team Member": [
+            "Ankit Goel<Ankit.Goel@gds.ey.com>"
+        ],
+        "Comments": "",
+        "Uploaded By": "Prakhar.Rastogi1@gds.ey.com",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Consumer Products & Retail\\HPC\\Fragnances"
+    },
+    {
+        "Project Name": "Sport_Proj",
+        "Datatype": [
+            "CDD"
+        ],
+        "Filename": "app_bk.txt",
+        "Sector": "Technology Media and Entertainment",
+        "Sub-Sector": "Media and Entertainment",
+        "Segments": "Sports and Games",
+        "Year": [
+            "2013"
+        ],
+        "Geography": [
+            "US"
+        ],
+        "Keyword": [
+            "test"
+        ],
+        "Project Type": "Strategy",
+        "Partner": [
+            "Rupanshu Ahuja<rupanshu.ahuja@gds.ey.com>"
+        ],
+        "Project Lead": "Mitali Chopra<Mitali.Chopra@gds.ey.com>",
+        "Project Account": "Confidential_test",
+        "Team Member": [
+            "Aastha Surana<Aastha.Surana1@gds.ey.com>"
+        ],
+        "Comments": "",
+        "Uploaded By": "Prakhar.Rastogi1@gds.ey.com",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Technology Media and Entertainment\\Media and Entertainment\\Sports and Games"
+    },
+    {
+        "Project Name": "Sport_Proj",
+        "Datatype": [
+            "CDD"
+        ],
+        "Filename": "results_220121.txt",
+        "Sector": "Technology Media and Entertainment",
+        "Sub-Sector": "Media and Entertainment",
+        "Segments": "Sports and Games",
+        "Year": [
+            "2013"
+        ],
+        "Geography": [
+            "US"
+        ],
+        "Keyword": [
+            "jdjaa"
+        ],
+        "Project Type": "Strategy",
+        "Partner": [
+            "Rupanshu Ahuja<rupanshu.ahuja@gds.ey.com>"
+        ],
+        "Project Lead": "Mitali Chopra<Mitali.Chopra@gds.ey.com>",
+        "Project Account": "Confidential_test",
+        "Team Member": [
+            "Aastha Surana<Aastha.Surana1@gds.ey.com>"
+        ],
+        "Comments": "",
+        "Uploaded By": "Prakhar.Rastogi1@gds.ey.com",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Technology Media and Entertainment\\Media and Entertainment\\Sports and Games"
+    },
+    {
+        "Project Name": "Sport_Proj",
+        "Datatype": [
+            "CDD"
+        ],
+        "Filename": "UAT.xlsx",
+        "Sector": "Technology Media and Entertainment",
+        "Sub-Sector": "Media and Entertainment",
+        "Segments": "Sports and Games",
+        "Year": [
+            "2013"
+        ],
+        "Geography": [
+            "US"
+        ],
+        "Keyword": [
+            "mmx,zx"
+        ],
+        "Project Type": "Strategy",
+        "Partner": [
+            "Rupanshu Ahuja<rupanshu.ahuja@gds.ey.com>"
+        ],
+        "Project Lead": "Mitali Chopra<Mitali.Chopra@gds.ey.com>",
+        "Project Account": "Confidential_test",
+        "Team Member": [
+            "Aarti Aggarwal<Aarti.Aggarwal@gds.ey.com>"
+        ],
+        "Comments": "",
+        "Uploaded By": "Prakhar.Rastogi1@gds.ey.com",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Technology Media and Entertainment\\Media and Entertainment\\Sports and Games"
+    },
+    {
+        "Project Name": "AMM_test",
+        "Datatype": [
+            "CDD"
+        ],
+        "Filename": "sample.xlsx",
+        "Sector": "AMM",
+        "Sub-Sector": "Industrial Products",
+        "Segments": "Pipes Pumps & Valves",
+        "Year": [
+            "2013"
+        ],
+        "Geography": [
+            "US"
+        ],
+        "Keyword": [
+            "AMM"
+        ],
+        "Project Type": "Strategy",
+        "Partner": [
+            "Shweta Dudi<shweta.dudi@gds.ey.com>"
+        ],
+        "Project Lead": "Prakhar Rastogi<prakhar.rastogi1@gds.ey.com>",
+        "Project Account": "Strategic Investor",
+        "Team Member": [
+            "Aarti Aggarwal<Aarti.Aggarwal@gds.ey.com>"
+        ],
+        "Comments": "",
+        "Uploaded By": "Prakhar.Rastogi1@gds.ey.com",
+        "Filepath": "C:\\Data\\KM\\KMtree\\AMM\\Industrial Products\\Pipes Pumps & Valves"
+    },
+    {
+        "Project Name": "Testing_mark1",
+        "Datatype": [
+            "CDD"
+        ],
+        "Filename": "UAT.xlsx",
+        "Sector": "Consumer Products & Retail",
+        "Sub-Sector": "HPC",
+        "Segments": "Fragnances",
+        "Year": [
+            "2013"
+        ],
+        "Geography": [
+            "US"
+        ],
+        "Keyword": [
+            "test"
+        ],
+        "Project Type": "Strategy",
+        "Partner": [
+            "Prakhar Rastogi<prakhar.rastogi1@gds.ey.com>"
+        ],
+        "Project Lead": "Yukti Arora<Yukti.Arora3@gds.ey.com>",
+        "Project Account": "Confidential",
+        "Team Member": [
+            "Ankit Goel<Ankit.Goel@gds.ey.com>"
+        ],
+        "Comments": "",
+        "Uploaded By": "Prakhar.Rastogi1@gds.ey.com",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Consumer Products & Retail\\HPC\\Fragnances"
+    },
+    {
+        "Project Name": "Sport_Proj",
+        "Datatype": [
+            "CDD"
+        ],
+        "Filename": "Data_Tagging_Strategy_CPR_v01.xlsx",
+        "Sector": "Technology Media and Entertainment",
+        "Sub-Sector": "Media and Entertainment",
+        "Segments": "Sports and Games",
+        "Year": [
+            "2014"
+        ],
+        "Geography": [
+            "US"
+        ],
+        "Keyword": [
+            "sjdnsd"
+        ],
+        "Project Type": "Strategy",
+        "Partner": [
+            "Rupanshu Ahuja<rupanshu.ahuja@gds.ey.com>"
+        ],
+        "Project Lead": "Mitali Chopra<Mitali.Chopra@gds.ey.com>",
+        "Project Account": "Confidential_test",
+        "Team Member": [
+            "Aastha Surana<Aastha.Surana1@gds.ey.com>"
+        ],
+        "Comments": "",
+        "Uploaded By": "Prakhar.Rastogi1@gds.ey.com",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Technology Media and Entertainment\\Media and Entertainment\\Sports and Games"
+    },
+    {
+        "Project Name": "Sport_Proj",
+        "Datatype": [
+            "CDD"
+        ],
+        "Filename": "Book3.xlsx",
+        "Sector": "Technology Media and Entertainment",
+        "Sub-Sector": "Media and Entertainment",
+        "Segments": "Sports and Games",
+        "Year": [
+            "2013"
+        ],
+        "Geography": [
+            "US"
+        ],
+        "Keyword": [
+            "skSK"
+        ],
+        "Project Type": "Strategy",
+        "Partner": [
+            "Rupanshu Ahuja<rupanshu.ahuja@gds.ey.com>"
+        ],
+        "Project Lead": "Mitali Chopra<Mitali.Chopra@gds.ey.com>",
+        "Project Account": "Confidential_test",
+        "Team Member": [
+            "Abhinav Saha<Abhinav.Saha@gds.ey.com>"
+        ],
+        "Comments": "KXKAX",
+        "Uploaded By": "Prakhar.Rastogi1@gds.ey.com",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Technology Media and Entertainment\\Media and Entertainment\\Sports and Games"
+    },
+    {
+        "Project Name": "mark1",
+        "Datatype": [
+            "CDD"
+        ],
+        "Filename": "UAT_v1.xlsx",
+        "Sector": "Consumer Products & Retail",
+        "Sub-Sector": "F&B",
+        "Segments": "Food- Processed Meat",
+        "Year": [
+            "2013"
+        ],
+        "Geography": [
+            "US"
+        ],
+        "Keyword": [
+            "mmmM"
+        ],
+        "Project Type": "VDD",
+        "Partner": [
+            "Vishal Gupta<vishal.gupta3@gds.ey.com>"
+        ],
+        "Project Lead": "Aditi Kapoor<Aditi.Kapoor1@gds.ey.com>",
+        "Project Account": "PE/VC",
+        "Team Member": [
+            "Aarti Aggarwal<Aarti.Aggarwal@gds.ey.com>"
+        ],
+        "Comments": "",
+        "Uploaded By": "Prakhar.Rastogi1@gds.ey.com",
+        "Filepath": "C:\\Data\\KM\\KMtree\\Consumer Products & Retail\\F&B\\Food- Processed Meat"
+    }
+]

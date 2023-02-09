@@ -1,0 +1,56 @@
+[
+    {
+        "Filename": "abc.xlsx",
+        "Filepath": "C:\\Data\\KM\\KMtree\\CPR\\Retail\\Convenience Store",
+        "Geography": "US",
+        "Sector": "CPR",
+        "Segments": "E-Commerce",
+        "Sub-Sector": "Retail",
+        "Year": "2008"
+    },
+    {
+        "Filename": "abc.xlsx",
+        "Filepath": "C:\\Data\\KM\\KMtree\\CPR\\Retail\\Convenience Store",
+        "Geography": "US",
+        "Sector": "CPR",
+        "Segments": "E-Commerce",
+        "Sub-Sector": "Retail",
+        "Year": "2008"
+    },
+    {
+        "Filename": "3.5.1.3.1.2_ASO_Agreement_1.doc",
+        "Filepath": "C:\\Data\\KM\\KMtree\\CPR\\Retail\\Convenience Store",
+        "Geography": "US",
+        "Sector": "CPR",
+        "Segments": "Convenience Store",
+        "Sub-Sector": "Retail",
+        "Year": "2018"
+    },
+    {
+        "Filename": "Data_Tagging_Strategy_CPR_v01.xlsx",
+        "Filepath": "C:\\Data\\KM\\KMtree\\CPR\\Retail\\Convenience Store",
+        "Geography": "US",
+        "Sector": "CPR",
+        "Segments": "Convenience Store",
+        "Sub-Sector": "Retail",
+        "Year": "2019"
+    },
+    {
+        "Filename": "McKesson_Specialty_Arizona_Inc_Single_Manu_REMS_SA_JUN2013.pdf",
+        "Filepath": "C:\\Data\\KM\\KMtree\\CPR\\Retail\\Convenience Store",
+        "Geography": "US",
+        "Sector": "CPR",
+        "Segments": "Convenience Store",
+        "Sub-Sector": "Retail",
+        "Year": "2018"
+    },
+    {
+        "Filename": "LeanIX_MSA_-_signed.pdf",
+        "Filepath": "C:\\Data\\KM\\KMtree\\CPR\\Retail\\Convenience Store",
+        "Geography": "US",
+        "Sector": "CPR",
+        "Segments": "Convenience Store",
+        "Sub-Sector": "Retail",
+        "Year": "2018-2019"
+    }
+]

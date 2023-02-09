@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>KM Platform</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<style>
+  .container {
+      width: 550px;
+  }
+  .multiselect label{
+    font-weight: normal;
+  }
+  .multiselect input[type=checkbox] {
+    margin-right: 5px;
+  }
+  .multiselect{
+    height: 120px;
+    width: 100%;
+    border: 1px solid #ccc;
+    font: 16px/26px Georgia, Garamond, Serif;
+    overflow: auto;
+    padding: 0 20px;
+  }
+  </style>
+</head>
+<body>
+
+<div class="container">
+<div class="row">
+     <div class="col-md-12">
+         <h2>KM PLATFORM</h2>
+            <form action= "{{ url_for('test') }}"  method="POST" enctype="multipart/form-data" name="myForm">
+              <div class="form-group">
+                <label for="sec">Sector<span class="required">*</span></label>
+                <select id="sec" name="sec" class="form-control" onchange="getValues(value)">
+                  {% for sector in sectors %}
+                  <option value="{{sector}}">{{sector}}</option>
+                  {% endfor %}
+               </select>
+                 </div>
+
+                <div class="form-group">
+                  <label for="Subsec">Subsector<span class="required">*</span></label>
+                  <select id="Subsec" name="Subsec" class="form-control">
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="seg">Segments<span class="required">*</span></label>
+                  <select id="seg" name="seg" class="form-control">
+                  </select>
+                </div>
+
+                    <div class="form-group">
+                 <label for="geo">Geography<span class="required">*</span></label>
+                    <div id="geo" class="multiselect">
+                   {% for geo in geographys %}
+                        <input type="checkbox" name="geo" value="{{geo}}" id="{{geo}}"><label for="{{geo}}">{{geo}}</label><br>
+                          {% endfor %}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                <label for="year">Years<span class="required">*</span></label>
+                    <div id="year" class="multiselect">
+                   {% for year in years %}
+                        <input type="checkbox" name="year" value="{{year}}" id="{{year}}"><label for="{{year}}">{{year}}</label><br>
+                          {% endfor %}
+                    </div>
+
+             </div>
+                <div class="form-group">
+                  <label for="dataType">Data Types<span class="required">*</span></label>
+                    <div id="datatype" class="multiselect">
+                    {% for datatype in datatypes %}
+                        <input type="checkbox" name="datatype" value="{{datatype}}" id="{{datatype}}"><label for="{{datatype}}">{{datatype}}</label><br>
+                          {% endfor %}
+                    </div>
+               </div>
+
+                <div class="form-group">
+                      <label for="projname">Project Name</label>
+                      <select id="projname" name="projname" class="form-control">
+                        {% for name in projectNames %}
+                          <option value="{{name}}">{{name}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+
+               <div class="form-group">
+                <label for="keyword">Keywords<span class="required">*</span></label>
+                <textarea id="keyword" name="keyword" placeholder="keyword1,keyword2,keyword3..." rows="4" cols="65"></textarea>
+             </div>
+             <div class="form-group">
+              <label for="comments">Comments</label>
+              <textarea id="comments" name="comments" rows="4" cols="65"></textarea>
+           </div>
+
+                <div class="form-group">
+                <input type="file" id="myFile" name="file">
+                    <br>
+<!--                <input type="submit" value="Upload" class="btn btn-success" onclick="alertfunction()">-->
+                    </div>
+                <div id="optionsforsub" style="display:none">{{options}}</div>
+          <input type="submit" class="btn btn-success" btn-lg value="Submit" onsubmit="validate()">
+        </form>
+         </div>
+      </div>
+</div>
+</body>
+</html>
+
+<script>
+function getValues(key) {
+  let options = document.getElementById('optionsforsub');
+  options = JSON.parse(options.innerText);
+  allSubSectors = options[0];
+  allSegments = options[1];
+  for (var elm of allSubSectors) {
+    if (elm[key]) {
+      subSectors = elm[key];
+      child_select = document.getElementById('Subsec');
+      let optionHTML = '<option value="-1"></option>';
+      for (let sub of subSectors) {
+        optionHTML += '<option value="' + sub + '">' + sub + '</option>';
+      }
+      child_select.innerHTML = optionHTML;
+    }
+  }
+
+  for (var elm of allSegments) {
+    if (elm[key]) {
+      subSectors = elm[key];
+      child_select = document.getElementById('seg');
+      let optionHTML = '<option value="-1"></option>';
+      for (let sub of subSectors) {
+        optionHTML += '<option value="' + sub + '">' + sub + '</option>';
+      }
+      child_select.innerHTML = optionHTML;
+    }
+  }
+  }
+
+
+function validate() {
+
+         if( document.myForm.sec.value == "" ) {
+            alert( "Please select sector name!" );
+            document.myForm.sec.focus() ;
+            return false;
+         }
+         if( document.myForm.Subsec.value == "" ) {
+            alert( "Please select Sub-sector name!" );
+            document.myForm.Subsec.focus() ;
+            return false;
+         }
+         if( document.myForm.seg.value == "") {
+            alert( "Please select segment name" );
+            document.myForm.seg.focus() ;
+            return false;
+         }
+         var unchecked = 0;
+         for(var i=0;i<document.myForm.year.length;i++){
+          if( !document.myForm.year[i].checked) unchecked++;
+        }
+         if(unchecked == document.myForm.year.length){
+            alert( "Please select year" );
+              document.myForm.year.focus() ;
+              return false;
+          }
+
+         if( document.myForm.dataType.value == "" ) {
+            alert( "Please select Data Type" );
+            document.myForm.year.focus() ;
+            return false;
+         }
+         if( document.myForm.keyword.value == "" ) {
+            alert( "Please select Keyword" );
+            document.myForm.year.focus() ;
+            return false;
+         }
+         if( document.myForm.file.value == "") {
+            alert( "Please upload File" );
+            document.myForm.file.focus() ;
+            return false;
+         }
+         return( true );
+      }
+
+</script>

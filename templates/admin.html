@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>KM Platform-Admin Page</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<style>
+  .container {
+      width: 550px;
+  }
+  .multiselect label{
+    font-weight: normal;
+  }
+  .multiselect input[type=checkbox] {
+    margin-right: 5px;
+  }
+  .date-picker{
+    width:100%;
+  }
+  .multiselect{
+    height: 120px;
+    width: 100%;
+    border: 1px solid #ccc;
+    font: 16px/26px Georgia, Garamond, Serif;
+    overflow: auto;
+    padding: 0 20px;
+  }
+  #project, #accountname, #strategy, #industry{
+    display: none;
+  }
+
+  {
+  }
+  </style>
+</head>
+<body>
+
+<div class="container">
+<div class="row">
+     <div class="col-md-12">
+         <h3>Admin Page</h3>
+            <form action= "{{ url_for('test') }}" method="POST" enctype="multipart/form-data" name="myForm">
+              <div class="form-group">
+                <label for="category">Category<span class="required">*</span></label>
+                 <select id="category" name="category" class="form-control">
+                    <option value=""></option>
+                    <option value="project" >Project</option>
+                    <option value="strategy">Strategy Team</option>
+                    <option value="accountname">Account</option>
+                    <option value="industry">Industry</option>
+                </select>
+              </div>
+
+                <div class="form-group">
+                <label for="sub-category">Sub-category<span class="required">*</span></label>
+                 <select id="sub-category" name="sub-category" class="form-control">
+                    <option value=""></option>
+                    <option value="partners">Partner</option>
+                    <option value="project_leads">Project Lead</option>
+                    <option value="team_members">Team Member</option>
+<!--                    <option value="industry">Industry</option>-->
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="add_show">Activity<span class="required">*</span></label>
+                 <select id="add_show" name="add_show" class="form-control">
+                    <option value=""></option>
+                    <option value="add">Add</option>
+                    <option value="update">Update</option>
+                    <option value="show">Show</option>
+                </select>
+              </div>
+              <div id="project">
+              <div class="form-group">
+                <label for="sec">Sector<span class="required">*</span></label>
+                 <select id="sec" name="sec" class="form-control">
+                 <option value="">Select Sector</option>
+                 <option value="c">CPR</option>
+               </select>
+                 </div>
+
+                <div class="form-group">
+                   <label for="Subsec">Subsector<span class="required">*</span></label>
+                    <select id="Subsec" name="Subsec" class="form-control">
+                    <option value="">Select Subsector</option>
+                  </select>
+                    </div>
+
+                <div class="form-group">
+                   <label for="seg">Segments<span class="required">*</span></label>
+                    <select id="seg" name="seg" class="form-control">
+                    <option value="">Select Segment</option>
+                  </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="top">Type of Project</label>
+                      <select id="top" name="top" class="form-control">
+                        <option value=""></option>
+                                   <option value="">CDD</option>
+                                   <option value="">BD</option>
+                                   <option value="">Market Study</option>
+                                   <option value="">Strategy</option>
+                                   <option value="">VDD</option>
+                                   <option value="">White papers</option>
+                                   <option value="">Modelling</option>
+                                   <option value="">Pricing Analysis</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="projname">Start Date</label><br/>
+                      <input class="date-picker" type="date" name="startdate">
+                    </div>
+                    <div class="form-group">
+                      <label for="rprojname">RMT Project Name</label>
+                      <input class="" type="text" name="rprojname">
+                    </div>
+                    <div class="form-group">
+                      <label for="projname">Project Name</label>
+                      <input class="" type="text" name="rprojname">
+                    </div>
+                    <div class="form-group">
+                      <label for="partner">Partner</label>
+                      <div id="partner" class="multiselect"></div>
+                    </div>
+                    <div class="form-group">
+                      <label for="account">Account</label>
+                      <select id="account" name="account" class="form-control">
+                        <option value=""></option>
+                        <option value="">CDD</option>
+                        <option value="">BD</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="projlead">Project Lead</label>
+                      <select id="projlead" name="projlead" class="form-control">
+                        <option value=""></option>
+                        <option value="">CDD</option>
+                        <option value="">BD</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div id="strategy">
+                    <div class="form-group">
+                      <label for="memname">Member Name</label>
+                      <input class="" type="text" name="memname">
+                    </div>
+                    <div class="form-group">
+                      <label for="emailmem">Email ID of member</label>
+                      <input class="" type="text" name="emailmem">
+                    </div>
+
+                  </div>
+                  <div id="accountname">
+                    <div class="form-group">
+                      <label for="legalacc">Legal Account Name</label>
+                      <input class="" type="text" name="legalacc">
+                    </div>
+                    <div class="form-group">
+                      <label for="capiq">Capital IQ link</label>
+                      <input class="" type="text" name="capiq">
+                    </div>
+
+                  </div>
+                  <div id="industry">
+                    <div class="form-group">
+                      <label for="legalacc">Sub Category
+
+                      </label>
+                      <select id="activity" name="activity" class="form-control">
+                        <option value=""></option>
+                        <option value="sec">Sector</option>
+                        <option value="subsec">Sub-Sector</option>
+                        <option value="seg">Segment</option>
+                    </select>
+                    </div>
+
+                  </div>
+
+          <input type="submit" class="btn btn-success" value="Submit">
+        </form>
+         </div>
+      </div>
+</div>
+</body>
+</html>
+
+<script>
+var dataType= ['CDD','Competition','Drivers','Macro data','Mkt data','Mkt reports', 'Trends', 'Value Chain'];
+var partner= ['CDD','Competition', 'Drivers', 'Macro data', 'Mkt data','Mkt reports', 'Trends', 'Value Chain'];
+var years = ['2013-2023','2013-2018','2018','2019'];
+var data =[
+        {
+          "Sector": 'TMT',
+            "Subsector": ['','Telecom','Media and Entertainment','Technology'],
+            "Segments": ['','Convenience Store','Food','Bags','Disinfectants and Pet Hygiene'],
+            'projname' : ['','proj 1','proj 2']
+        },
+        {
+          "Sector": 'AM&M',
+            "Subsector": ['',"Retail"],
+            "Segments": ['',"E-Commerce"],
+            'projname' : ['','proj 1','proj 2']
+        },
+        {
+          "Sector": 'Education',
+            "Subsector": ['',"F&B"],
+            "Segments": ['',"Food"],
+            'projname' : ['','proj 1','proj 2']
+        },
+        {
+          "Sector": 'Financial Services',
+            "Subsector": ['','Insurance','Banking','Asset Management/ Investment Management','Payments','Financial Technology'],
+            "Segments": ['',"E-Commerce"],
+            'projname' : ['','proj 1','proj 2']
+        },
+        {
+          "Sector": 'HS&W',
+            "Subsector": ['','Healthcare','Life Sciences'],
+            "Segments": ['',"Food"],
+            'projname' : ['','proj 1','proj 2']
+        },
+        {
+          "Sector": 'Consumer Products and Retail',
+            "Subsector": ['','F&B','HPC','Restaurant','Consumer Services','Retail','Agriculture'],
+            "Segments": ['',"E-Commerce"],
+            'projname' : ['','proj 1','proj 2']
+        }
+    ]
+    var SubsecDropdown = document.getElementById('Subsec');
+    var Segdropdown = document.getElementById('seg');
+    var sectordropdown = document.getElementById('sec');
+    var dataTypedropdown = document.getElementById('dataType');
+    var partnerDropdown = document.getElementById('partner');
+    var projNameDropdown = document.getElementById('projname');
+
+    $('#add_show').on('change',function(){
+      console.log($(this).val());
+        if( $(this).val()==="add" && $("#category :selected").val()==="project") {
+        $("#project").show();
+        $("#strategy").hide();
+        $("#accountname").hide();
+        $("#industry").hide();
+
+        }
+        else if( $(this).val()==="add" && $("#category :selected").val()==="strategy"){
+        $("#strategy").show();
+        $("#sub-category").show();
+        $("#project").hide();
+        $("#accountname").hide();
+        $("#industry").hide();
+        }
+        else if( $(this).val()==="add" && $("#category :selected").val() ==="accountname"){
+        $("#accountname").show();
+        $("#project").hide();
+        $("#strategy").hide();
+        $("#industry").hide();
+        $("#sub-category").hide();
+        }
+
+        else if( $(this).val()==="add" && $("#category :selected").val()==="industry"){
+        $("#industry").show();
+        $("#project").hide();
+        $("#strategy").hide();
+        $("#accountname").hide();
+        $("#sub-category").hide();
+        }
+
+    });
+
+    $('#category').on('change',function(){
+
+      console.log($(this).val());
+        if( $(this).val()==="project" && $("#add_show :selected").val()==="add") {
+        $("#project").show();
+        $("#strategy").hide();
+        $("#accountname").hide();
+        $("#industry").hide();
+        $("#sub-category").hide();
+        }
+        else if( $(this).val()==="strategy" && $("#add_show :selected").val()==="add"){
+        $("#strategy").show();
+        $("#project").hide();
+        $("#accountname").hide();
+        $("#industry").hide();
+        $("#sub-category").show();
+        }
+        else if( $(this).val()==="accountname" && $("#add_show :selected").val() ==="add"){
+        $("#accountname").show();
+        $("#project").hide();
+        $("#strategy").hide();
+        $("#industry").hide();
+        $("#sub-category").hide();
+        }
+
+        else if( $(this).val()==="industry" && $("#add_show :selected").val()==="add"){
+        $("#industry").show();
+        $("#project").hide();
+        $("#strategy").hide();
+        $("#accountname").hide();
+        $("#sub-category").hide();
+        }
+
+    });
+
+    var populateProjName = function(idx) {
+      var projOptions = '';
+
+      for(var i = 0; i < data[idx].projname.length; i++) {
+        var option = document.createElement('option');
+        option.value = data[idx].projname[i];
+        option.innerHTML = data[idx].projname[i];
+        projOptions += option.outerHTML;
+      }
+
+      projNameDropdown.innerHTML = projOptions;
+
+    }
+    var populatepartner = function() {
+      var datapartner = '';
+
+      for(var i = 0; i < partner.length; i++) {
+        var option ='';
+        option += '<input type="checkbox" name="year" value="'+partner[i]+'"><label for="'+partner[i]+'">'+ partner[i] +'</label><br>';
+        datapartner += option;
+      }
+
+      partnerDropdown.innerHTML = datapartner;
+    }
+
+    var populatedataType = function() {
+      var dataTypeOptions  = '';
+
+      for(var i = 0; i < dataType.length; i++) {
+        var option ='';
+        option += '<input type="checkbox" name="datatype" value="'+dataType[i]+'"><label for="'+dataType[i]+'">'+ dataType[i] +'</label><br>';
+        dataTypeOptions += option;
+      }
+
+      dataTypedropdown.innerHTML = dataTypeOptions;
+    }
+
+    var populateSubsec = function(GeographyIndex) {
+      var SubsecOptions = '';
+
+      for(var i = 0; i < data[GeographyIndex].Subsector.length; i++) {
+        var option = document.createElement('option');
+        option.value = data[GeographyIndex].Subsector[i];
+        option.innerHTML = data[GeographyIndex].Subsector[i];
+        SubsecOptions += option.outerHTML;
+      }
+
+      SubsecDropdown.innerHTML = SubsecOptions;
+
+    }
+
+    var populateSeg = function(GeographyIndex) {
+      var SegOptions = '';
+
+      for(var i = 0; i < data[GeographyIndex].Segments.length; i++) {
+        var option = document.createElement('option');
+        option.value = data[GeographyIndex].Segments[i];
+        option.innerHTML = data[GeographyIndex].Segments[i];
+        SegOptions += option.outerHTML;
+      }
+
+      Segdropdown.innerHTML = SegOptions;
+    }
+
+
+    var populatesect = function(GeographyIndex) {
+      var sectOptions = '';
+        var option = document.createElement('option');
+        option.value = '';
+        option.innerHTML = '';
+        sectOptions += option.outerHTML;
+
+      for(var i = 0; i < data.length; i++) {
+        var option = document.createElement('option');
+        option.value = data[i].Sector;
+        option.innerHTML = data[i].Sector;
+        sectOptions += option.outerHTML;
+      }
+
+      sectordropdown.innerHTML = sectOptions;
+
+    }
+
+    populateSubsec(0);
+    populateSeg(0);
+    populatesect(0);
+    populatedataType();
+    populatepartner();
+    populateProjName(0);
+
+    sectordropdown.onchange = function(e) {
+    var a = document.getElementById("sec").selectedIndex;
+        populateSubsec(a);
+        populateSeg(a);
+        populateProjName(a);
+    }
+
+function validate() {
+
+         if( document.myForm.sec.value == "--Select Sector--" ) {
+            alert( "Please select sector name!" );
+            document.myForm.sec.focus() ;
+            return false;
+         }
+         if( document.myForm.Subsec.value == "--Select Subsector--" ) {
+            alert( "Please select Sub-sector name!" );
+            document.myForm.Subsec.focus() ;
+            return false;
+         }
+         if( document.myForm.seg.value == "--Select Segments--") {
+            alert( "Please select segment name" );
+            document.myForm.seg.focus() ;
+            return false;
+         }
+         var unchecked = 0;
+         for(var i=0;i<document.myForm.year.length;i++){
+          if( !document.myForm.year[i].checked) unchecked++;
+        }
+         if(unchecked == document.myForm.year.length){
+            alert( "Please select year" );
+              document.myForm.year.focus() ;
+              return false;
+          }
+
+         if( document.myForm.dataType.value == "--Select Data Type--" ) {
+            alert( "Please select Data Type" );
+            document.myForm.year.focus() ;
+            return false;
+         }
+
+         if( document.myForm.file.value == "") {
+            alert( "Please upload File" );
+            document.myForm.file.focus() ;
+            return false;
+         }
+
+         return( true );
+      }
+</script>

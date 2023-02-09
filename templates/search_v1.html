@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>KM Platform-Search Page</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<style>
+  .container {
+      width: 550px;
+  }
+  .multiselect label{
+    font-weight: normal;
+  }
+  .multiselect input[type=checkbox] {
+    margin-right: 5px;
+  }
+  .multiselect{
+    height: 120px;
+    width: 100%;
+    border: 1px solid #ccc;
+    font: 16px/26px Georgia, Garamond, Serif;
+    overflow: auto;
+    padding: 0 20px;
+  }
+  </style>
+</head>
+<body>
+
+<div class="container">
+<div class="row">
+     <div class="col-md-12">
+         <p><h2>KM PLATFORM-Search Page</h2></p>
+            <form action= "{{ url_for('test') }}"  method="POST" enctype="multipart/form-data" name="myForm">
+              <label for="search2" class="example">iSearch</label>
+              <input
+                type="text"
+                placeholder="Search.."
+                name="search2"
+                id="search"
+              />
+              <br />
+              <br />
+              <div class="form-group">
+                <label for="sec">Sector<span class="required">*</span></label>
+                 <select id="sec" name="sec" class="form-control">
+                 <option value="">Select Sector</option>
+                 <option value="c">CPR</option>
+               </select>
+                 </div>
+
+
+                <div class="form-group">
+                   <label for="Subsec">Subsector<span class="required">*</span></label>
+                    <select id="Subsec" name="Subsec" class="form-control">
+                    <option value="">Select Subsector</option>
+                  </select>
+                    </div>
+
+                <div class="form-group">
+                   <label for="seg">Segments<span class="required">*</span></label>
+                    <select id="seg" name="seg" class="form-control">
+                    <option value="">Select Segment</option>
+                  </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="top">Type of Project</label>
+                      <select id="top" name="top" class="form-control">
+                        <option value=""></option>
+                                   <option value="">CDD</option>
+                                   <option value="">BD</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="projname">Project Name</label>
+                      <select id="projname" name="projname" class="form-control">
+                        <!--            <option value="">Select Segment</option>-->
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="partner">Partner</label>
+                      <div id="partner" class="multiselect"></div>
+                    </div>
+                    <div class="form-group">
+                      <label for="account">Account</label>
+                      <select id="account" name="account" class="form-control">
+                        <option value=""></option>
+                        <option value="">CDD</option>
+                        <option value="">BD</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="projlead">Project Lead</label>
+                      <select id="projlead" name="projlead" class="form-control">
+                        <option value=""></option>
+                        <option value="">CDD</option>
+                        <option value="">BD</option>
+                      </select>
+                    </div>
+
+                <div class="form-group">
+                  <label for="dataType">Data Types<span class="required">*</span></label>
+                  <div id="dataType" class="multiselect" ></div>
+               </div>
+               <div class="form-group">
+                <label for="year">Years<span class="required">*</span></label>
+                <div id="year" class="multiselect xyz"></div>
+             </div>
+
+               <div class="form-group">
+                 <label for="geo">Geography<span class="required">*</span></label>
+                 <div id="geo" class="multiselect abc" ></div>
+                </div>
+          <input type="submit" class="btn btn-success" btn-lg value="Submit">
+        </form>
+         </div>
+      </div>
+</div>
+
+      {% for mesg in get_flashed_messages() %}
+      <h1>{{ mesg }}</h1>
+      {% endfor %}
+</body>
+</html>
+
+<script>
+var dataType= ['CDD','Competition', 'Drivers', 'Macro data', 'Mkt data','Mkt reports', 'Trends', 'Value Chain'];
+var partner= ['CDD','Competition', 'Drivers', 'Macro data', 'Mkt data','Mkt reports', 'Trends', 'Value Chain'];
+var Geography = ['US', 'UK', 'GSA'];
+var years = ['2013-2023','2013-2018','2018','2019'];
+var data =[
+        {
+          "Sector": 'TMT',
+            "Subsector": ['','Telecom','Media and Entertainment','Technology'],
+            "Segments": ['','Convenience Store','Food','Bags','Disinfectants and Pet Hygiene'],
+            'projname' : ['','proj 1','proj 2']
+        },
+        {
+          "Sector": 'AM&M',
+            "Subsector": ['',"Retail"],
+            "Segments": ['',"E-Commerce"],
+            'projname' : ['','proj 1','proj 2']
+        },
+        {
+          "Sector": 'Education',
+            "Subsector": ['',"F&B"],
+            "Segments": ['',"Food"],
+            'projname' : ['','proj 1','proj 2']
+        },
+        {
+          "Sector": 'Financial Services',
+            "Subsector": ['','Insurance','Banking','Asset Management/ Investment Management','Payments','Financial Technology'],
+            "Segments": ['',"E-Commerce"],
+            'projname' : ['','proj 1','proj 2']
+        },
+        {
+          "Sector": 'HS&W',
+            "Subsector": ['','Healthcare','Life Sciences'],
+            "Segments": ['',"Food"],
+            'projname' : ['','proj 1','proj 2']
+        },
+        {
+          "Sector": 'Consumer Products and Retail',
+            "Subsector": ['','F&B','HPC','Restaurant','Consumer Services','Retail','Agriculture'],
+            "Segments": ['',"E-Commerce",'Convenience Store','Apparel distribution','Hyper/Supermart','Luxury goods','Furniture','Entertainment','Pharmacy','Jewellery'],
+            'projname' : ['','proj 1','proj 2']
+        }
+    ]
+
+    var geoDropdown = document.getElementById('geo');
+    var SubsecDropdown = document.getElementById('Subsec');
+    var Segdropdown = document.getElementById('seg');
+    var yeardropdown = document.getElementById('year');
+    var sectordropdown = document.getElementById('sec');
+    var dataTypedropdown = document.getElementById('dataType');
+    var partnerDropdown = document.getElementById('partner');
+    var projNameDropdown = document.getElementById('projname');
+
+    var populateProjName = function(idx) {
+      var projOptions = '';
+
+      for(var i = 0; i < data[idx].projname.length; i++) {
+        var option = document.createElement('option');
+        option.value = data[idx].projname[i];
+        option.innerHTML = data[idx].projname[i];
+        projOptions += option.outerHTML;
+      }
+
+      projNameDropdown.innerHTML = projOptions;
+
+    }
+    var populatepartner = function() {
+      var datapartner = '';
+
+      for(var i = 0; i < partner.length; i++) {
+        var option ='';
+        option += '<input type="checkbox" name="year" value="'+partner[i]+'"><label for="'+partner[i]+'">'+ partner[i] +'</label><br>';
+        datapartner += option;
+      }
+
+      partnerDropdown.innerHTML = datapartner;
+    }
+    var populatedata = function() {
+      var dataOptions = '';
+
+      for(var i = 0; i < Geography.length; i++) {
+        var option ='';
+        option += '<input type="checkbox" name="geo" value="'+Geography[i]+'"><label for="'+Geography[i]+'">'+ Geography[i] +'</label><br>';
+        dataOptions += option;
+      }
+
+      geoDropdown.innerHTML = dataOptions;
+    }
+    var populatedataType = function() {
+      var dataTypeOptions  = '';
+
+      for(var i = 0; i < dataType.length; i++) {
+        var option ='';
+        option += '<input type="checkbox" name="datatype" value="'+dataType[i]+'"><label for="'+dataType[i]+'">'+ dataType[i] +'</label><br>';
+        dataTypeOptions += option;
+      }
+
+      dataTypedropdown.innerHTML = dataTypeOptions;
+    }
+
+    var populateSubsec = function(GeographyIndex) {
+      var SubsecOptions = '';
+
+      for(var i = 0; i < data[GeographyIndex].Subsector.length; i++) {
+        var option = document.createElement('option');
+        option.value = data[GeographyIndex].Subsector[i];
+        option.innerHTML = data[GeographyIndex].Subsector[i];
+        SubsecOptions += option.outerHTML;
+      }
+
+      SubsecDropdown.innerHTML = SubsecOptions;
+
+    }
+
+    var populateSeg = function(GeographyIndex) {
+      var SegOptions = '';
+
+      for(var i = 0; i < data[GeographyIndex].Segments.length; i++) {
+        var option = document.createElement('option');
+        option.value = data[GeographyIndex].Segments[i];
+        option.innerHTML = data[GeographyIndex].Segments[i];
+        SegOptions += option.outerHTML;
+      }
+
+      Segdropdown.innerHTML = SegOptions;
+    }
+
+    var populateyear = function() {
+      var yearOptions = '';
+
+      for(var i = 0; i < years.length; i++) {
+        var option ='';
+        option += '<input type="checkbox" name="year" value="'+years[i]+'"><label for="'+years[i]+'">'+ years[i] +'</label><br>';
+        yearOptions += option;
+      }
+
+      yeardropdown.innerHTML = yearOptions;
+    }
+
+    var populatesect = function(GeographyIndex) {
+      var sectOptions = '';
+        var option = document.createElement('option');
+        option.value = '';
+        option.innerHTML = '';
+        sectOptions += option.outerHTML;
+
+      for(var i = 0; i < data.length; i++) {
+        var option = document.createElement('option');
+        option.value = data[i].Sector;
+        option.innerHTML = data[i].Sector;
+        sectOptions += option.outerHTML;
+      }
+
+      sectordropdown.innerHTML = sectOptions;
+
+    }
+
+    populatedata();
+    populateSubsec(0);
+    populateSeg(0);
+    populateyear();
+    populatesect(0);
+    populatedataType();
+    populatepartner();
+    populateProjName(0);
+
+    sectordropdown.onchange = function(e) {
+    var a = document.getElementById("sec").selectedIndex;
+        populatedata()
+        populateSubsec(a);
+        populateSeg(a);
+        populateyear();
+        populateProjName(a);
+    }
+
+function validate() {
+
+         if( document.myForm.sec.value == "--Select Sector--" ) {
+            alert( "Please select sector name!" );
+            document.myForm.sec.focus() ;
+            return false;
+         }
+         if( document.myForm.Subsec.value == "--Select Subsector--" ) {
+            alert( "Please select Sub-sector name!" );
+            document.myForm.Subsec.focus() ;
+            return false;
+         }
+         if( document.myForm.seg.value == "--Select Segments--") {
+            alert( "Please select segment name" );
+            document.myForm.seg.focus() ;
+            return false;
+         }
+         var unchecked = 0;
+         for(var i=0;i<document.myForm.year.length;i++){
+          if( !document.myForm.year[i].checked) unchecked++;
+        }
+         if(unchecked == document.myForm.year.length){
+            alert( "Please select year" );
+              document.myForm.year.focus() ;
+              return false;
+          }
+
+         if( document.myForm.dataType.value == "--Select Data Type--" ) {
+            alert( "Please select Data Type" );
+            document.myForm.year.focus() ;
+            return false;
+         }
+
+         if( document.myForm.file.value == "") {
+            alert( "Please upload File" );
+            document.myForm.file.focus() ;
+            return false;
+         }
+
+         return( true );
+      }
+</script>

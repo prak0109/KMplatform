@@ -1,0 +1,238 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>KM Platform-Search Page</title>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+
+
+<style>
+    #partner {
+    margin-left: 25%;
+}
+  .main-container {
+      width: 550px;
+      padding-top: 30px;
+      margin-bottom: 50px;
+  }
+  .multiselect label{
+    font-weight: normal;
+    display: inline;
+    word-break: break-all;
+    font-size: 12px;
+  }
+  .multiselect input[type=checkbox] {
+    margin-right: 5px;
+  }
+  .multiselect{
+    height: 120px;
+    width: 74%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    font: 16px/26px Georgia, Garamond, Serif;
+    overflow: auto;
+    padding: 0 20px;
+  }
+  .form-control {
+    display: inline-block;
+    width: 74%;
+  }
+  .form-group>label, .search-label {
+    display: inline-block;
+    width: 25%;
+    vertical-align: top;
+}
+#search{
+  width: 74%;
+}
+.btn-warning,.btn-warning:hover{
+  background-color: #FFFF00;
+  border: none;
+  font-weight: 500;
+}
+  </style>
+</head>
+<body>
+
+<div class="main-container container">
+<div class="row">
+     <div class="col-md-12">
+         <h4>Search</h4>
+            <form action= "{{ url_for('search_results') }}"  method="POST" enctype="multipart/form-data" name="myForm">
+              <label for="search2" class="search-label example">iSearch</label>
+              <input
+                type="text"
+                placeholder="Search.."
+                name="search2"
+                id="search"
+              />
+              <br />
+              <br />
+              <div class="form-group">
+                <label for="sec">Sector</label>
+                <select id="sec" name="sec" class="form-control" onchange="getValues(value)">
+                  {% for sector in sectors %}
+                  <option value="{{sector}}">{{sector}}</option>
+                  {% endfor %}
+               </select>
+                 </div>
+
+                 <div class="form-group">
+                  <label for="Subsec">Subsector</label>
+                  <select id="Subsec" name="Subsec" class="form-control" onchange="getsubValues(value)">
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="seg">Segments</label>
+                  <select id="seg" name="seg" class="form-control">
+                  </select>
+                </div>
+                    <div class="form-group">
+                      <label for="top">Type of Project</label>
+                      <select id="top" name="top" class="form-control">
+                          <option value=""></option>
+                          {% for top in tops %}
+                          <option value="{{top}}">{{top}}</option>
+                        {% endfor %}
+
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="projname">Project Name</label>
+                      <select id="projname" name="projname" class="form-control">
+                          <option value=""></option>
+                        {% for name in projectNames %}
+                          <option value="{{name}}">{{name}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="form-group" id="partners_div">
+                      <label for="partner">Partner</label><input oninput="find(this)" class="search" placeholder="search partner id..">
+                      <div id="partner" class="multiselect">
+                        {% for partner in partners %}
+                        <div class="{{partner}}"><input type="checkbox" name="partner" value="{{partner}}" id="{{partner}}"><label for="{{partner}}">{{partner}}</label><br></div>
+                          {% endfor %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="account">Account</label>
+                      <select id="account" name="account" class="form-control">
+                        <option value=""></option>
+                        {% for account in accounts %}
+                          <option value="{{account}}">{{account}}</option>
+                        {% endfor %}
+
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="projlead">Project Lead</label>
+                      <select id="projlead" name="projlead" class="form-control">
+                        <option value=""></option>
+                          {% for lead in leads %}
+                            <option value="{{lead}}">{{lead}}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+
+                <div class="form-group">
+                  <label for="dataType">Data Types</label>
+                    <div id="datatype" class="multiselect">
+                    {% for datatype in datatypes %}
+                        <input type="checkbox" name="datatype" value="{{datatype}}" id="{{datatype}}"><label for="{{datatype}}">{{datatype}}</label><br>
+                          {% endfor %}
+                    </div>
+               </div>
+               <div class="form-group">
+                <label for="year">Years</label>
+                    <div id="year" class="multiselect">
+                   {% for year in years %}
+                        <input type="checkbox" name="year" value="{{year}}" id="{{year}}"><label for="{{year}}">{{year}}</label><br>
+                          {% endfor %}
+                    </div>
+
+             </div>
+
+               <div class="form-group">
+                 <label for="geo">Geography</label>
+                    <div id="geo" class="multiselect">
+                   {% for geo in geographys %}
+                        <input type="checkbox" name="geo" value="{{geo}}" id="{{geo}}"><label for="{{geo}}">{{geo}}</label><br>
+                          {% endfor %}
+                    </div>
+                </div>
+
+                <div id="optionsforsub" style="display:none">{{options}}</div>
+                <div id="projectsData" style="display:none">{{projects}}</div>
+                <div id="partnersData" style="display:none">{{partners}}</div>
+
+          <input type="submit" class="btn btn-warning" btn-lg value="Submit">
+        </form>
+         {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <script>
+      var messages = {{ messages | safe }};
+        alert(messages);
+    </script>
+  {% endif %}
+{% endwith %}
+         </div>
+      </div>
+</div>
+<div id="subsector_div" style="display:none">{{subsectors}}</div>
+<div id="segment_div" style="display:none">{{segments}}</div>
+<!--<div id="partnersData" style="display:none">{{partners}}</div>-->
+</body>
+</html>
+
+<script>
+
+function find(text){
+let partner = $('#partner > div');
+for(let member of partner){
+  let memid = member.getAttribute('class');
+  if(memid && memid.toLowerCase().includes(text.value.toLowerCase())){
+    $(member).show();
+  } else $(member).hide();
+}
+
+}
+
+function getValues(key) {
+  let subsectors = document.getElementById('subsector_div');
+  subsectors = JSON.parse(subsectors.innerText);
+  let segments = document.getElementById('segment_div');
+  segments = JSON.parse(segments.innerText);
+      child_select = document.getElementById('Subsec');
+      let optionHTML = '<option value="-1"></option>';
+  for (var sub of subsectors[key]) {
+       optionHTML += '<option value="' + sub + '">' + sub + '</option>';
+  }
+  child_select.innerHTML = optionHTML;
+  };
+
+  function getsubValues(key) {
+  let subsectors = document.getElementById('subsector_div');
+  subsectors = JSON.parse(subsectors.innerText);
+  let segments = document.getElementById('segment_div');
+  segments = JSON.parse(segments.innerText);
+
+      child_select = document.getElementById('seg');
+      let optionHTML = '<option value="-1"></option>';
+  for (var sub of segments[key]) {
+       optionHTML += '<option value="' + sub + '">' + sub + '</option>';
+  }
+  child_select.innerHTML = optionHTML
+  };
+
+</script>
+
+{% endblock %}
+
+

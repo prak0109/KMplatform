@@ -1,0 +1,375 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>KM Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+<style>
+    #teammember {
+    margin-left: 25%;
+}
+  .main-container {
+      width: 550px;
+      padding-top: 30px;
+      margin-bottom: 50px;
+  }
+  .multiselect label{
+    font-weight: normal;
+    font-size: 12px;
+  }
+  .multiselect input[type=checkbox] {
+    margin-right: 5px;
+  }
+  .multiselect{
+    height: 120px;
+    width: 100%;
+    border: 1px solid #ccc;
+    font: 16px/26px Georgia, Garamond, Serif;
+    overflow: auto;
+    padding: 0 20px;
+  }
+  .form-control,.form-group>input, .form-group>textarea, .date-picker, .multiselect {
+    display: inline-block;
+    width: 74%;
+  }
+  .form-group>label, .search-label {
+    display: inline-block;
+    width: 25%;
+    vertical-align: top;
+}
+.btn-warning,.btn-warning:hover{
+  background-color: #FFFF00;
+  border: none;
+  font-weight: 500;
+}
+
+div#loading {
+    width: 35px;
+    height: 35px;
+    display: none;
+    background: url(/static/giphy.gif) no-repeat;
+    cursor: wait;
+    }
+
+
+  </style>
+</head>
+<body>
+
+<div class="main-container container">
+<div class="row">
+     <div class="col-md-12">
+         <h4>Upload Files</h4>
+
+            <form action= "{{ url_for('upload_results') }}"  method="POST" enctype="multipart/form-data" name="myForm" onsubmit="return validate()">
+              <div class="form-group">
+
+                  <div class="form-group">
+                      <label for="projname">Project Name<span class="required">*</span></label>
+                      <select id="projname" name="projname" class="form-control" onchange="setProjectValues(value)">
+                          <option value=""></option>
+                          {% for name in projectNames %}
+
+                          <option value="{{name}}">{{name}}</option>
+                        {% endfor %}
+
+                      </select>
+                    </div>
+
+                <label for="sec">Sector<span class="required">*</span></label>
+                <select id="sec" name="sec" class="form-control" onchange="getValues(value)">
+                  {% for sector in sectors %}
+                  <option value="{{sector}}">{{sector}}</option>
+                  {% endfor %}
+               </select>
+                 </div>
+
+                <div class="form-group">
+                  <label for="Subsec">Subsector<span class="required">*</span></label>
+                  <select id="Subsec" name="Subsec" class="form-control" onchange="getsubValues(value)">
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="seg">Segments<span class="required">*</span></label>
+                  <select id="seg" name="seg" class="form-control">
+                  </select>
+                </div>
+
+                    <div class="form-group">
+                 <label for="geo">Geography<span class="required">*</span></label>
+                    <div id="geo" class="multiselect">
+                   {% for geo in geographys %}
+                        <input type="checkbox" name="geo" value="{{geo}}" id="{{geo}}"><label for="{{geo}}">{{geo}}</label><br>
+                          {% endfor %}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                <label for="year">Years<span class="required">*</span></label>
+                    <div id="year" class="multiselect">
+                   {% for year in years %}
+                        <input type="checkbox" name="year" value="{{year}}" id="{{year}}"><label for="{{year}}">{{year}}</label><br>
+                          {% endfor %}
+                    </div>
+
+             </div>
+                <div class="form-group">
+                  <label for="dataType">Data Types<span class="required">*</span></label>
+                    <div id="datatype" class="multiselect">
+                    {% for datatype in datatypes %}
+                        <input type="checkbox" name="datatype" value="{{datatype}}" id="{{datatype}}"><label for="{{datatype}}">{{datatype}}</label><br>
+                          {% endfor %}
+                    </div>
+               </div>
+
+<!--                <div class="form-group">-->
+<!--                      <label for="projname">Project Name</label>-->
+<!--                      <select id="projname" name="projname" class="form-control">-->
+
+<!--&lt;!&ndash;                        {% for name in projectNames %}&ndash;&gt;-->
+<!--&lt;!&ndash;                          <option value="{{name}}">{{name}}</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                        {% endfor %}&ndash;&gt;-->
+<!--                      </select>-->
+<!--                    </div>-->
+
+                <div class="form-group" id="teammember_div">
+              <label for="teammember">Team Member<span class="required">*</span></label><input oninput="search(this)" class="search" placeholder="search member id..">
+              <div id="teammember" name="teammember" class="multiselect">
+                  {% for teammember in teammembers %}
+              <div class="{{teammember}}"><input type="checkbox" name="teammember" value="{{teammember}}" id="{{teammember}}"><label for="{{teammember}}">{{teammember}}</label></div>
+                  {% endfor %}
+              </div>
+          </div>
+
+               <div class="form-group">
+                <label for="keyword">Keywords<span class="required">*</span></label>
+                <textarea id="keyword" name="keyword" placeholder="keyword1,keyword2,keyword3..." rows="4" cols="65"></textarea>
+             </div>
+             <div class="form-group">
+              <label for="comments">Comments</label>
+              <textarea id="comments" name="comments" rows="4" cols="65"></textarea>
+           </div>
+
+                <div class="form-group"><span class="required">*</span>
+                <input type="file" id="myFile" name="file">
+                    <br>
+<!--                <input type="submit" value="Upload" class="btn btn-success" onclick="alertfunction()">-->
+                    </div>
+                <div id="optionsforsub" style="display:none">{{options}}</div>
+          <input type="submit" class="btn btn-warning" btn-lg value="Submit">
+        </form>
+         {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <script>
+      var messages = {{ messages | safe }};
+        alert(messages);
+    </script>
+  {% endif %}
+{% endwith %}
+         </div>
+      </div>
+</div>
+<div id="subsector_div" style="display:none">{{subsectors}}</div>
+<div id="segment_div" style="display:none">{{segments}}</div>
+<div id="teammembersData" style="display:none">{{teammembers}}</div>
+<div id="projectsData" style="display:none">{{projects}}</div>
+
+
+</body>
+</html>
+
+
+<script>
+function getValues(key) {
+  let subsectors = document.getElementById('subsector_div');
+  subsectors = JSON.parse(subsectors.innerText);
+  let segments = document.getElementById('segment_div');
+  segments = JSON.parse(segments.innerText);
+      child_select = document.getElementById('Subsec');
+      let optionHTML = '<option value="-1"></option>';
+  for (var sub of subsectors[key]) {
+       optionHTML += '<option value="' + sub + '">' + sub + '</option>';
+  }
+  child_select.innerHTML = optionHTML;
+// <!--  child_select = document.getElementById('projname');-->
+// <!--  optionHTML = '<option value=""></option>';-->
+// <!--   let projects = document.getElementById("projectsData");-->
+// <!--    projects = JSON.parse(projects.innerText);-->
+// <!--    var selectedProject = projects["projects"].filter(function (item) {-->
+// <!--      return item["Project Sector"] === key;-->
+// <!--    });-->
+// <!--    for (var proj of selectedProject) {-->
+// <!--       optionHTML += '<option value="' + proj["Project Name"] + '">' + proj["Project Name"] + '</option>';-->
+// <!--  }-->
+// <!--  child_select.innerHTML = optionHTML;-->
+
+  };
+
+  function getsubValues(key) {
+  let subsectors = document.getElementById('subsector_div');
+  subsectors = JSON.parse(subsectors.innerText);
+  let segments = document.getElementById('segment_div');
+  segments = JSON.parse(segments.innerText);
+
+      child_select = document.getElementById('seg');
+      let optionHTML = '<option value="-1"></option>';
+  for (var sub of segments[key]) {
+       optionHTML += '<option value="' + sub + '">' + sub + '</option>';
+  }
+  child_select.innerHTML = optionHTML
+  };
+
+
+function search(text) {
+let teammember = $('#teammember > div');
+for(let member of teammember){
+  let memid = member.getAttribute('class');
+  if(memid && memid.toLowerCase().includes(text.value.toLowerCase())){
+    $(member).show();
+  } else $(member).hide();
+}
+// var a = document.getElementById('teammember');
+// a.replaceChildren();
+// team_member = document.getElementById('teammembersData');
+// team_member = JSON.parse(team_member.innerText.replaceAll("'", '"'));
+// team_member=team_member.filter((data)=> {return data.toLowerCase().includes(value.value.toLowerCase())});
+
+// for (let member of team_member) {
+// option = document.createElement('input');
+// option.setAttribute('id', member);
+// option.setAttribute('type', 'checkbox');
+
+// label = document.createElement('label');
+// br = document.createElement('br');
+// label.innerText= member;
+//         a.appendChild(option);
+//          a.appendChild(label);
+//          a.appendChild(br);
+//       }
+
+}
+
+function setProjectValues(name) {
+    let projects = document.getElementById("projectsData");
+    projects = JSON.parse(projects.innerText);
+    const projectNames = [];
+    if (name==''){
+    document.getElementById('sec').value = null;
+    document.getElementById('Subsec').value = null;
+    document.getElementById('seg').value = null;
+    return
+    }
+    var selectedProject = projects["projects"].filter(function (item) {
+      return item["Project Name"] === name;
+    });
+
+    this.getValues(selectedProject[0]["Project Sector"]);
+    this.getsubValues(selectedProject[0]["Project Sub Sector"]);
+
+    document.getElementById('sec').value = selectedProject[0]["Project Sector"];
+    document.getElementById('Subsec').value = selectedProject[0]["Project Sub Sector"];
+    document.getElementById('seg').value = selectedProject[0]["Project Segment"];
+
+    $('#sec').attr('disabled',true);
+    $('#Subsec').attr('disabled',true);
+    $('#seg').attr('disabled',true);
+
+ }
+
+function validate() {
+
+$('#sec').removeAttr('disabled');
+    $('#Subsec').removeAttr('disabled');
+    $('#seg').removeAttr('disabled');
+            if( document.myForm.projname.value == "" || document.myForm.projname.value ==null) {
+            alert( "Please select Project Name" );
+            document.myForm.projname.focus();
+            return false;
+         }
+         if( document.myForm.sec.value == "") {
+            alert( "Please select sector name" );
+            document.myForm.sec.focus();
+            return false;
+         }
+         if( document.myForm.Subsec.value =='-1' ) {
+            alert( "Please select Sub-sector name" );
+            document.myForm.Subsec.focus();
+            return false;
+         }
+         if(document.myForm.seg.value =='-1') {
+            alert( "Please select segment name" );
+            document.myForm.seg.focus();
+            return false;
+         }
+
+         var unchecked_geo = 0;
+         for(var i=0;i<document.myForm.geo.length;i++){
+          if( !document.myForm.geo[i].checked)
+          {unchecked_geo++;}
+        }
+
+         if(unchecked_geo == document.myForm.geo.length){
+            alert("Please Select Geography");
+            return false;
+          }
+         var unchecked = 0;
+         for(var i=0;i<document.myForm.year.length;i++){
+          if( !document.myForm.year[i].checked) {
+          unchecked++;}
+        }
+         if(unchecked == document.myForm.year.length){
+            alert("Please select year");
+            return false;
+          }
+         var unchecked_datatype = 0;
+         for(var i=0;i<document.myForm.datatype.length;i++){
+          if( !document.myForm.datatype[i].checked) {
+          unchecked_datatype++};
+        }
+
+         if(unchecked_datatype == document.myForm.datatype.length){
+            alert( "Please Select Datatype" );
+            return false;
+          }
+
+          var unchecked_teammember = 0;
+         for(var i=0;i<document.myForm.teammember.length;i++){
+          if( !document.myForm.teammember[i].checked) {
+          unchecked_teammember++};
+        }
+
+         if(unchecked_teammember == document.myForm.teammember.length){
+            alert( "Please Select Team Member" );
+            return false;
+          }
+
+         if(document.myForm.keyword.value == "" || document.myForm.keyword.value ==null ) {
+            document.myForm.keyword.focus();
+            alert( "Please select Keyword");
+            return false;
+         }
+<!--         if(/\s/g.test(document.myForm.keyword.value)) {-->
+<!--            alert( "Please select correct Keyword Format");-->
+<!--            document.myForm.keyword.focus();-->
+<!--            return false;-->
+<!--         }-->
+         if( document.myForm.file.value == "" || document.myForm.file.value ==null) {
+            alert( "Please upload file" );
+            return false;
+         }
+         return true;
+      }
+
+</script>
+
+{% endblock%}
+

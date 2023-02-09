@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Python Flask Dynamic Select Box for KM Platform</title>
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<div class="container">
+ <div class="row">
+        <div class="col-md-12">
+        <p><h2>KM Platform</h2></p>
+        <form method="POST">
+            {{ form.csrf_token}}
+
+          <div class="form-group">
+        <label for="email">Geography</label>
+        {{ form.Geography(class="form-control") }}
+       </div>
+       <div class="form-group">
+        <label for="email">Sector</label>
+        {{ form.Sector(class="form-control")}}
+       </div>
+       <div class="form-group">
+        <label for="email">Subsector</label>
+        {{ form.Subsector(class="form-control")}}
+       </div>
+        <div class="form-group">
+        <label for="email">Segments</label>
+        {{ form.Segments(class="form-control")}}
+       </div>
+
+        <div class="form-group">
+        <label for="email">Year</label>
+        {{ form.Year(class="form-control")}}
+       </div>
+
+        <div class="form-group">
+        <label for="email">Feedback</label>
+        {{ form.feedback(class="form-control")}}
+       </div>
+
+        <input type="submit" class="btn btn-success" btn-lg>
+      </form>
+        </div>
+ </div>
+</div>
+    <script>
+
+        geo_select = document.getElementById('Geography');
+        sub_sector_select = document.getElementById('Subsector');
+
+        geo_select.onchange= function() {
+            Geography = geo_select.value;
+            fetch('/Subsector/'+ Geography).then(function(response) {
+                response.json().then(function(data) {
+                    console.table(data);
+                    optionHTML= '';
+                    for (subsectors of data.sub_sectors) {
+                        optionHTML += '<option value="' + subsectors.Id + '">' + subsectors.Subsector + '</option>';
+                    }
+                    sub_sector_select.innerHTML = optionHTML;
+                });
+            });
+
+        }
+
+      </script>
+</body>
+
+</html>
+

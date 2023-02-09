@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>KM Platform</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+</head>
+<body>
+
+<div class="container">
+<div class="row">
+     <div class="col-md-12">
+         <p><h2>KM PLATFORM</h2></p>
+            <form action= "{{ url_for('test') }}"  method="POST" enctype="multipart/form-data" name="myForm">
+                <div class="form-group">
+                  <label for="geo">Geography<span class="required">*</span></label>
+                  <select id="geo" name="geo" class="form-control">
+                      <option value="">Select Geography</option>
+                  </select>
+                 </div>
+
+                <div class="form-group">
+                   <label for="sec">Sector</label>
+                    <select id="sec" name="sec" class="form-control">
+                    <option value="">Select Sector</option>
+                    <option value="c">CPR</option>
+                  </select>
+                    </div>
+
+                <div class="form-group">
+                   <label for="Subsec">Subsector</label>
+                    <select id="Subsec" name="Subsec" class="form-control">
+                    <option value="">Select Subsector</option>
+                  </select>
+                    </div>
+
+                <div class="form-group">
+                   <label for="seg">Segments</label>
+                    <select id="seg" name="seg" class="form-control">
+                    <option value="">Select Segment</option>
+                  </select>
+                    </div>
+
+                <div class="form-group">
+                   <label for="year">Years</label>
+                    <select id="year" name="year" class="form-control">
+                    <option value="">Select Year</option>
+                  </select>
+                    </div>
+
+                <div class="form-group">
+                <input type="file" id="myFile" name="file">
+                    <br>
+<!--                <input type="submit" value="Upload" class="btn btn-success" onclick="alertfunction()">-->
+                    </div>
+          <input type="submit" class="btn btn-success" btn-lg value="Submit" onclick="validate()">
+        </form>
+         </div>
+      </div>
+</div>
+</body>
+</html>
+
+<script>
+var data =[
+        {
+            "Geography": "US",
+            "Sector": ['','CPR'],
+            "Subsector": ['','Retail','F&B','HPC'],
+            "Segments": ['--Select Segments--','Convenience Store','Food','Bags','Disinfectants and Pet Hygiene'],
+            "Years": ['--Select Year--','2015-2020','2018-2019','2019-2020','2017-2022','2018','2016-2019','2019','2020','2014-2019','2016-2022','2009-2018','2014-2024','2008-2024','2005-2024']
+        },
+        {
+            "Geography": "UK",
+            "Sector": ['','CPR'],
+            "Subsector": ['--Select Subsector--',"Retail"],
+            "Segments": ['--Select Segments--',"E-Commerce"],
+            "Years": ['--Select Year--','2013-2023','2013-2018','2018','2019']
+        },
+        {
+            "Geography": "GSA",
+            "Sector": ['','CPR'],
+            "Subsector": ['--Select Subsector--',"F&B"],
+            "Segments": ['--Select Segments--',"Food"],
+            "Years": ['--Select Year--','2014-2024','2018-2024','2017-2019','2020']
+        }
+    ]
+
+    var geoDropdown = document.getElementById('geo');
+    var SubsecDropdown = document.getElementById('Subsec');
+    var Segdropdown = document.getElementById('seg');
+    var yeardropdown = document.getElementById('year');
+    var sectordropdown = document.getElementById('sec');
+
+    var populatedata = function() {
+      var GeographyOptions = '';
+
+      for(var i = 0; i < data.length; i++) {
+        var option = document.createElement('option');
+        option.value = data[i].Geography;
+        option.innerHTML = data[i].Geography;
+        GeographyOptions += option.outerHTML;
+      }
+
+      geoDropdown.innerHTML = GeographyOptions;
+    }
+
+    var populateSubsec = function(GeographyIndex) {
+      var SubsecOptions = '';
+
+      for(var i = 0; i < data[GeographyIndex].Subsector.length; i++) {
+        var option = document.createElement('option');
+        option.value = data[GeographyIndex].Subsector[i];
+        option.innerHTML = data[GeographyIndex].Subsector[i];
+        SubsecOptions += option.outerHTML;
+      }
+
+      SubsecDropdown.innerHTML = SubsecOptions;
+
+    }
+
+    var populateSeg = function(GeographyIndex) {
+      var SegOptions = '';
+
+      for(var i = 0; i < data[GeographyIndex].Segments.length; i++) {
+        var option = document.createElement('option');
+        option.value = data[GeographyIndex].Segments[i];
+        option.innerHTML = data[GeographyIndex].Segments[i];
+        SegOptions += option.outerHTML;
+      }
+
+      Segdropdown.innerHTML = SegOptions;
+    }
+
+    var populateyear = function(GeographyIndex) {
+      var yearOptions = '';
+
+      for(var i = 0; i < data[GeographyIndex].Years.length; i++) {
+        var option = document.createElement('option');
+        option.value = data[GeographyIndex].Years[i];
+        option.innerHTML = data[GeographyIndex].Years[i];
+        yearOptions += option.outerHTML;
+      }
+
+      yeardropdown.innerHTML = yearOptions;
+    }
+
+    var populatesect = function(GeographyIndex) {
+      var sectOptions = '';
+
+      for(var i = 0; i < data[GeographyIndex].Sector.length; i++) {
+        var option = document.createElement('option');
+        option.value = data[GeographyIndex].Sector[i];
+        option.innerHTML = data[GeographyIndex].Sector[i];
+        sectOptions += option.outerHTML;
+      }
+
+      sectordropdown.innerHTML = sectOptions;
+    }
+
+    populatedata();
+    populateSubsec(0);
+    populateSeg(0);
+    populateyear(0);
+    populatesect(0);
+
+    geoDropdown.onchange = function(e) {
+	 var a = document.getElementById("geo").selectedIndex;
+        populateSubsec(a);
+        populateSeg(a);
+        populateyear(a);
+        populatesect(a);
+
+    }
+
+function validate() {
+
+         if( document.myForm.sec.value == "" ) {
+            alert( "Please select sector name!" );
+            document.myForm.sec.focus() ;
+            return false;
+         }
+         if( document.myForm.Subsec.value == "--Select Subsector--" ) {
+            alert( "Please select Sub-sector name!" );
+            document.myForm.Subsec.focus() ;
+            return false;
+         }
+         if( document.myForm.seg.value == "--Select Segments--") {
+            alert( "Please select segment name" );
+            document.myForm.seg.focus() ;
+            return false;
+         }
+         if( document.myForm.year.value == "--Select Year--" ) {
+            alert( "Please select year" );
+            document.myForm.year.focus() ;
+            return false;
+         }
+         if( document.myForm.file.value == "") {
+            alert( "Please upload File" );
+            document.myForm.file.focus() ;
+            return false;
+         }
+
+         return( true );
+      }
+
+</script>
+

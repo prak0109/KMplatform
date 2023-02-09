@@ -1,0 +1,1968 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<style>
+.loading {
+    display: block;
+    position: fixed;
+    opacity : 0.5;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
+.loading > .inner
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+input[type=submit] {
+    padding:5px 15px;
+    background:#ffe600;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    width: 60%;
+}
+label {
+    width: 40%;
+}
+select {
+    width:50%;
+    border: 1px solid #8e8d8d;
+    border-radius: 3px;
+}
+textarea {
+    width: 100% !important;
+    border: 1px solid black;
+    height: 53vh;
+    resize: none;
+    border: 1px solid #8e8d8d;
+    border-radius: 3px;
+}
+
+.white-border {
+    padding: 10px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.14), 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.margin-bottom {
+    margin-bottom: 16px;
+}
+
+.box{
+    background-color: #F5F5F5;
+    border: 1px solid #5f788a;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 8px;
+    padding: 25px;
+    width: 50%;
+    margin-left:25%;
+    margin-bottom: 30px;
+    z-index:10;
+}
+
+select {
+    width:59%;
+}
+
+input{
+    width:59%;
+    border: 1px solid #8e8d8d;
+    border-radius: 3px;
+}
+
+#Year {
+    /* border: 1px solid grey; */
+    /* padding: 10px; */
+    width:100%;
+    /* margin-bottom: 5px; */
+}
+#Geography {
+    /* border: 1px solid grey; */
+    /* padding: 10px; */
+    width:100%;
+    /* margin-bottom: 5px; */
+}
+
+#CFAVersion{
+    /* border: 1px solid grey; */
+    /* padding: 10px; */
+    width:100%;
+    /* margin-bottom: 5px; */
+}
+
+#RMSVersion{
+    /* border: 1px solid grey; */
+    /* padding: 10px; */
+    width:100%;
+    /* margin-bottom: 5px; */
+}
+
+#MasterSlideVer{
+    /* border: 1px solid grey; */
+    /* padding: 10px; */
+    width:100%;
+    /* margin-bottom: 5px; */
+}
+
+#MasterSlideVerUsed{
+    /* border: 1px solid grey; */
+    /* padding: 10px; */
+    width:100%;
+    /* margin-bottom: 5px; */
+}
+
+
+
+/* #search {
+    width: 59%;
+} */
+
+#fileupload{
+    margin-left:41%;
+}
+ul {
+    height: 100px;
+    overflow: auto;
+    border: 2px solid #9a9898;
+    list-style-type: none;
+    border-radius: 5px;
+    margin-left: 41%;
+    margin-top: -8%;
+}
+
+li { background: #e7e5e5; padding-left:5px;    margin-left: -40px;    height: 25px; }
+li:nth-child(odd) { background: white; }
+
+p{
+    margin-bottom: 10px;
+}
+
+.required{
+  border-left: 5px solid #9a9898;
+}
+
+#reqiremsg{
+    margin-top: 5px;
+    margin-left: 10px;
+    border-radius: 3px 0px 0px 3px;
+    border-left: 5px solid #9a9898;
+}
+
+.satisfied {
+  border-left: 5px solid #6AADE4;
+}
+
+input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+    margin-left: -70px;
+    margin-right: -70px;
+}
+#submitButton{
+    width: 100%;
+    background-color: #6AADE4;
+}
+
+li label{
+    width:auto !important;
+}
+
+</style>
+<div id ="loading" class="loading">
+    <div class="inner"><img src="{{ url_for('static', filename='images/loading_small.gif') }}" title="Loading" class="img-responsive center-block"/>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='jsgrid.min.css') }}" />
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='jsgrid-theme.min.css') }}" />
+<script type="text/javascript" src="{{ url_for('static', filename='jsgrid.min.js') }}"></script>
+<script src="{{ url_for('static', filename='ag-grid-community.min.noStyle.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='ag-grid.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='ag-theme-alpine.css') }}">
+{% block upload %}
+{% from "_formhelpers.html" import render_field %}
+<div id="particles-js" style="
+    width: 120vw;
+    height: 115%;
+    left: -5vw;
+    top: -14vh;
+    position: absolute;
+    z-index: -1;">
+
+</div>
+<div class="box">
+    <span style="font-size: 20px;
+    font-weight: 700;">Upload Files Form</span>
+<form action='' method="POST" enctype="multipart/form-data">
+    <p>{{ upload_form.csrf_token() }}</p>
+    <p> {{ upload_form.level1.label }} {{ upload_form.level1}}</p>
+    <p> {{ upload_form.level2.label }} {{ upload_form.level2}}</p>
+    <div id="SpeSubSec" style="display: block">
+        <p> {{ upload_form.level3.label }} {{ upload_form.level3 }}</p>
+    </div>
+    <p> {{ upload_form.level4.label }} {{ upload_form.level4 }}</p>
+
+    <div id="Level5display" style="display: none">
+        <p> {{ show_level5 }} </p>
+    </div>
+
+    <div id="Feasibility" style="display: none">
+        <p> {{ upload_form.level5.label }} {{ upload_form.level5 }}</p>
+    </div>
+
+    <p style="border-bottom: 2px solid darkgrey;padding-bottom: 12px;"> {{ upload_form.level6.label }} {{ upload_form.level6 }}</p>
+
+    <div id="Level7display" style="display: none">
+        <p> {{ show_level7 }} </p>
+    </div>
+
+    <div id="CoreContext" style="display: block">
+        <p> <label id="level7label"> {{ upload_form.level7.label }} </label> {{ upload_form.level7 }}</p>
+    </div>
+    <div id="NoResult" style="display: none">
+        <p>No file has been uploaded yet for the selected project and core-context </p>
+    </div>
+
+    <div id="AnalysisDone" style="display: none; border-bottom: 2px solid darkgrey;padding-bottom: 12px;
+        margin-bottom: 10px;">
+        <p> <label id="level8label"> {{ upload_form.level8.label }} </label> {{ upload_form.level8 }}</p>
+    </div>
+
+    <div id="FPVScenarioName" style="display: none">
+        <p> {{ upload_form.fpv_scenario_name.label }} {{ upload_form.fpv_scenario_name }}</p>
+    </div>
+
+    <div id="TeamMember" style="display: none">
+        <p> {{ upload_form.team_member.label }} {{ upload_form.team_member }}</p>
+    </div>
+
+    <div id="Year" style="display: none">
+        <p> {{ upload_form.year.label }} {{ upload_form.year }}</p>
+    </div>
+
+    <div id="Geography" style="display: none">
+        <p> {{ upload_form.geography.label }} {{ upload_form.geography }}</p>
+    </div>
+
+    <div id="Segments" style="display: none">
+        <p> {{ upload_form.segments.label }} {{ upload_form.segments }}</p>
+    </div>
+
+    <div id="Source" style="display: none">
+        <p> {{ upload_form.source.label }} {{ upload_form.source }}</p>
+    </div>
+
+    <div id="DataSource" style="display: none">
+        <p> {{ upload_form.data_source.label }} {{ upload_form.data_source }}</p>
+    </div>
+
+    <div id="MMVersion" style="display: none">
+        <p> {{ upload_form.mm_version.label }} {{ upload_form.mm_version }}</p>
+    </div>
+
+    <div id="GSMVersion" style="display: none">
+        <p> {{ upload_form.gsm_version.label }} {{ upload_form.gsm_version }}</p>
+    </div>
+
+    <div id="SourceMarketGrowth" style="display: none">
+        <p> {{ upload_form.src_mkt_growth.label }} {{ upload_form.src_mkt_growth }}</p>
+    </div>
+
+    <div id="SourceCompanyGrowth" style="display: none">
+        <p> {{ upload_form.scr_cmpny_growth.label }} {{ upload_form.scr_cmpny_growth }}</p>
+    </div>
+
+    <div id="GGVersion" style="display: none">
+        <p> {{ upload_form.gg_version.label }} {{ upload_form.gg_version }}</p>
+    </div>
+
+    <div id="Granularity" style="display: none">
+        <p> {{ upload_form.granularity.label }} {{ upload_form.granularity }}</p>
+    </div>
+
+    <div id="RMSVersion" style="display: none">
+        <p> {{ upload_form.rms_version.label }} {{ upload_form.rms_version }}</p>
+    </div>
+
+    <div id="CFAVersion" style="display: none">
+        <p> {{ upload_form.cfa_version.label }} {{ upload_form.cfa_version }}</p>
+    </div>
+
+    <div id="MVDVersion" style="display: none">
+        <p> {{ upload_form.mvd_version.label }} {{ upload_form.mvd_version }}</p>
+    </div>
+
+    <div id="Version" style="display: none">
+        <p> {{ upload_form.version.label }} {{ upload_form.version }}</p>
+    </div>
+
+    <div id="RMSThreshold" style="display: none">
+        <p> {{ upload_form.rms_threshold.label }} {{ upload_form.rms_threshold }}</p>
+    </div>
+
+    <div id="RevenueThreshold" style="display: none">
+        <p> {{ upload_form.revenue_threshold.label }} {{ upload_form.revenue_threshold }}</p>
+    </div>
+
+    <div id="RMSVersionUsed" style="display: none">
+        <p> {{ upload_form.rms_version_used.label }} {{ upload_form.rms_version_used }}</p>
+    </div>
+
+    <div id="LastPeriodConsYr" style="display: none">
+        <p> {{ upload_form.last_period_considered_year.label }} {{ upload_form.last_period_considered_year }}</p>
+    </div>
+
+    <div id="LastPeriodConsQtr" style="display: none">
+        <p> {{ upload_form.last_period_considered_quarter.label }} {{ upload_form.last_period_considered_quarter }}</p>
+    </div>
+
+    <div id="CFAVersionUsed" style="display: none">
+        <p> {{ upload_form.cfa_version_used.label }} {{ upload_form.cfa_version_used }}</p>
+    </div>
+
+    <div id="ReleaseDate" style="display: none">
+        <p> {{ upload_form.release_date.label }} {{ upload_form.release_date }}</p>
+    </div>
+
+    <div id="MasterSlideVer" style="display: none">
+        <p> {{ upload_form.master_slide_ver.label }} {{ upload_form.master_slide_ver }}</p>
+    </div>
+
+    <div id="Comments" style="display: none">
+        <p> {{ upload_form.comments.label }} {{ upload_form.comments }}</p>
+    </div>
+
+    <div id="MasterSlideVerUsed" style="display: none">
+        <p> {{ upload_form.master_version_used.label }} {{ upload_form.master_version_used }}</p>
+    </div>
+
+    <p><input type='file' name='file' id="fileupload"></p>
+    <p id="submitButtonDiv"> {{ upload_form.submitButton }}<span id="reqiremsg"><i>&nbsp;indicates mandatory field</i></span></p>
+
+
+</form>
+
+</div>
+<div>
+		<div id="dataGrid" style="height: 400px; width:100%; margin-bottom:2%" class="ag-theme-alpine"></div>
+		<p style="display:none" id="ProjectData">{{projects}}</p>
+	</div>
+
+<div>
+		<div id="dataGridRMS" style="height: 400px; width:100%; margin-bottom:4%" class="ag-theme-alpine"></div>
+		<p style="display:none" id="ProjectDataRMS">{{projects}}</p>
+	</div>
+
+<script src="{{ url_for('static', filename='particles.min.js') }}"></script>
+<script>
+$(window).ready(function(){
+   // PAGE IS FULLY LOADED
+   // FADE OUT YOUR OVERLAYING DIV
+   document.getElementById('loading').style.display = 'none';
+});
+
+document.getElementById('submitButton').onclick = function() {
+    document.getElementById('loading').style.display = 'block';
+}
+document.getElementById('uploadformNav').style.color = 'white';
+var l5display = document.getElementById("Level5display").textContent.replace(/\s/g, '')
+//alert(l5display)
+var l7display = document.getElementById("Level7display").textContent.replace(/\s/g, '')
+Feasibility.style.display = l5display == "True" ? "block" : "none";
+CoreContext.style.display = l7display == "True" ? "block" : "none";
+document.getElementById("level7label").innerHTML = l5display == "True" ? "Type of Document" : "Core context and gaps";
+
+var l1dd = document.getElementById("level1");
+var l2dd = document.getElementById("level2");
+var l3dd = document.getElementById("level3");
+var l4dd = document.getElementById("level4");
+var l5dd = document.getElementById("level5");
+var l6dd = document.getElementById("level6");
+var l7dd = document.getElementById("level7");
+var l8dd = document.getElementById("level8");
+
+// FPP
+var team_member = document.getElementById("team_member");
+var cfa_version_used = document.getElementById("cfa_version_used");
+var master_version_used = document.getElementById("master_version_used");
+
+var rms_threshold = document.getElementById("rms_threshold");
+var revenue_threshold = document.getElementById("revenue_threshold");
+var rms_version_used = document.getElementById("rms_version_used");
+var rms_version = document.getElementById("rms_version");
+var fpv_scenario_name = document.getElementById("fpv_scenario_name");
+
+var release_date = document.getElementById("release_date");
+
+var mvd_version = document.getElementById("mvd_version");
+var last_period_considered_year = document.getElementById("last_period_considered_year");
+var last_period_considered_quarter = document.getElementById("last_period_considered_quarter");
+var segments = document.getElementById("segments");
+var gsm_version = document.getElementById("gsm_version");
+
+var cfa_version = document.getElementById("cfa_version");
+
+var data_source = document.getElementById("data_source");
+var granularity = document.getElementById("granularity");
+
+var source = document.getElementById("source");
+var version = document.getElementById("version");
+var src_mkt_growth = document.getElementById("src_mkt_growth");
+var mm_version = document.getElementById("mm_version");
+//var license_renewal_date = document.getElementById("license_renewal_date");
+var scr_cmpny_growth = document.getElementById("scr_cmpny_growth");
+var gg_version = document.getElementById("gg_version");
+
+// Data Adequity
+
+src_mkt_growth.oninput = function() {
+    checkallinputs();
+}
+
+gg_version.oninput = function() {
+    checkallinputs();
+}
+
+scr_cmpny_growth.oninput = function() {
+    checkallinputs();
+}
+mm_version.oninput = function() {
+    checkallinputs();
+}
+
+// FPP
+team_member.onchange = function() {
+    checkallinputs();
+}
+
+gsm_version.oninput = function() {
+    checkallinputs();
+}
+
+segments.oninput = function() {
+    checkallinputs();
+}
+
+fpv_scenario_name.oninput = function() {
+    checkallinputs();
+}
+
+cfa_version_used.onchange = function() {
+    CheckNAChecked("cfa_version_used");
+    checkallinputs();
+}
+
+master_version_used.onchange = function() {
+    CheckNAChecked("master_version_used");
+    checkallinputs();
+}
+
+rms_threshold.oninput = function() {
+    checkallinputs();
+}
+
+revenue_threshold.oninput = function() {
+    checkallinputs();
+}
+
+rms_version_used.onchange = function() {
+    CheckNAChecked("rms_version_used");
+    checkallinputs();
+}
+rms_version.onchange = function() {
+    CheckNAChecked("rms_version");
+    checkallinputs();
+}
+
+release_date.onchange = function() {
+    checkallinputs();
+}
+
+mvd_version.oninput = function() {
+    checkallinputs();
+}
+
+
+last_period_considered_year.onchange = function() {
+    checkallinputs();
+}
+last_period_considered_quarter.onchange = function() {
+    checkallinputs();
+}
+
+cfa_version.onchange = function() {
+    CheckNAChecked("cfa_version");
+    checkallinputs();
+}
+
+data_source.oninput = function() {
+    checkallinputs();
+}
+
+granularity.oninput = function() {
+    checkallinputs();
+}
+
+source.oninput = function() {
+    checkallinputs();
+}
+
+version.onchange = function() {
+    checkallinputs();
+}
+
+document.getElementById('fileupload').onchange = function() {
+    checkallinputs();
+};
+
+var years_len = document.getElementById("year").childElementCount
+for (var i = 0; i < years_len; i++) {
+    document.getElementById('year-' + i).onchange = function() {
+        checkallinputs();
+    }
+}
+
+var rms_version_len = document.getElementById("rms_version").childElementCount
+for (var i = 0; i < rms_version_len; i++) {
+    document.getElementById('rms_version-' + i).onchange = function() {
+        checkallinputs();
+    }
+}
+
+var cfa_version_len = document.getElementById("cfa_version").childElementCount
+for (var i = 0; i < cfa_version_len; i++) {
+    document.getElementById('cfa_version-' + i).onchange = function() {
+        checkallinputs();
+    }
+}
+
+var master_slide_ver_len = document.getElementById("master_slide_ver").childElementCount
+for (var i = 0; i < master_slide_ver_len; i++) {
+    document.getElementById('master_slide_ver-' + i).onchange = function() {
+        CheckNAChecked("master_slide_ver");
+        checkallinputs();
+
+    }
+}
+
+var master_version_used_len = document.getElementById("master_version_used").childElementCount
+for (var i = 0; i < master_version_used; i++) {
+    document.getElementById('master_version_used-' + i).onchange = function() {
+        checkallinputs();
+    }
+}
+
+var geography_len = document.getElementById("geography").childElementCount
+for (var i = 0; i < geography_len; i++) {
+    document.getElementById('geography-' + i).onchange = function() {
+        checkallinputs();
+    }
+}
+
+// for (var i=0; i<=10; i++) {
+//    document.getElementById('cfa_version_used-v' + i).onchange = function() {
+//     checkallinputs();
+//    }
+// }
+
+/*
+        for (var i=0; i<=3; i++) {
+           document.getElementById('type_source-' + i).onchange = function() {
+            checkallinputs();
+           }
+        }
+*/
+function yearSelection() {
+    var year_len = document.getElementById("year").childElementCount
+    for (var i = 0; i < year_len; i++) {
+        if (document.getElementById('year-' + i).checked == true) {
+            satisfied(document.getElementById('year'));
+            return true;
+        }
+    }
+    required(document.getElementById('year'));
+    return false;
+}
+
+function rmsSelection() {
+    var rms_version_used_len = document.getElementById("rms_version_used").childElementCount
+    for (var i = 0; i < rms_version_used_len; i++) {
+        if (document.getElementById('rms_version_used-' + i)) {
+            if (document.getElementById('rms_version_used-' + i).checked == true) {
+                satisfied(document.getElementById('rms_version_used'));
+                return true;
+            }
+        }
+    }
+    required(document.getElementById('rms_version_used'));
+    return false;
+}
+
+function cfaSelection() {
+    var cfa_version_used_len = document.getElementById("cfa_version_used").childElementCount
+    for (var i = 0; i < cfa_version_used_len; i++) {
+        if (document.getElementById('cfa_version_used-' + i)) {
+            if (document.getElementById('cfa_version_used-' + i).checked == true) {
+                satisfied(document.getElementById('cfa_version_used'));
+                return true;
+            }
+        }
+    }
+    required(document.getElementById('cfa_version_used'));
+    return false;
+}
+
+function rms() {
+    var rms_version_len = document.getElementById("rms_version").childElementCount
+    for (var i = 0; i < rms_version_len; i++) {
+        if (document.getElementById('rms_version-' + i).checked == true) {
+            satisfied(document.getElementById('rms_version'));
+            return true;
+        }
+    }
+    required(document.getElementById('rms_version'));
+    return false;
+}
+
+function cfa() {
+    var cfa_version_len = document.getElementById("cfa_version").childElementCount
+    for (var i = 0; i < cfa_version_len; i++) {
+        if (document.getElementById('cfa_version-' + i).checked == true) {
+            satisfied(document.getElementById('cfa_version'));
+            return true;
+        }
+    }
+    required(document.getElementById('cfa_version'));
+    return false;
+}
+
+function master_slide() {
+    var master_slide_ver_len = document.getElementById("master_slide_ver").childElementCount
+    for (var i = 0; i < master_slide_ver_len; i++) {
+        if (document.getElementById('master_slide_ver-' + i).checked == true) {
+            satisfied(document.getElementById('master_slide_ver'));
+            return true;
+        }
+    }
+    required(document.getElementById('master_slide_ver'));
+    return false;
+}
+
+function master_slide_version_used() {
+    var master_version_used_len = document.getElementById("master_version_used").childElementCount
+    for (var i = 0; i < master_version_used_len; i++) {
+        if (document.getElementById('master_version_used-' + i).checked == true) {
+            satisfied(document.getElementById('master_version_used'));
+            return true;
+        }
+    }
+    required(document.getElementById('master_version_used'));
+    return false;
+}
+
+function geoSelection() {
+    var geography_len = document.getElementById("geography").childElementCount;
+    for (var i = 0; i < geography_len; i++) {
+        if (document.getElementById('geography-' + i).checked == true) {
+            satisfied(document.getElementById('geography'));
+            return true;
+        }
+    }
+    required(document.getElementById('geography'));
+    return false;
+}
+
+function disableButton() {
+    var el = document.getElementById('submitButtonDiv');
+    var all = el.getElementsByTagName('input');
+
+    var inp, i = 0;
+    while (inp = all[i++]) {
+        inp.disabled = true;
+    }
+
+    document.getElementById('reqiremsg').style.display = 'block';
+}
+
+function enableButton() {
+    var el = document.getElementById('submitButtonDiv');
+    var all = el.getElementsByTagName('input');
+
+    var inp, i = 0;
+    while (inp = all[i++]) {
+        inp.disabled = false;
+    }
+    document.getElementById('reqiremsg').style.display = 'none';
+}
+
+function required(element) {
+    element.classList.remove("satisfied");
+    element.classList.add("required");
+}
+
+function satisfied(element) {
+    element.classList.remove("required");
+    element.classList.add("satisfied");
+}
+
+function removeOptions(selectElement) {
+    var i, L = selectElement.options.length - 1;
+    for (i = L; i >= 0; i--) {
+        selectElement.remove(i);
+    }
+}
+
+function CheckNAChecked(elmt) {
+    var pres = document.getElementById(elmt + '-' + 0);
+    if (pres) {
+        if (pres.checked) {
+            var lenPar = document.getElementById(elmt).childElementCount
+            for (var i = 1; i < lenPar; i++) {
+                document.getElementById(elmt + '-' + i).disabled = true;
+                document.getElementById(elmt + '-' + i).checked = false;
+            }
+        } else {
+            var lenPar = document.getElementById(elmt).childElementCount
+            for (var i = 1; i < lenPar; i++) {
+                document.getElementById(elmt + '-' + i).disabled = false;
+            }
+
+        }
+    }
+}
+
+function checkallinputs() {
+    enableButton();
+
+    if (document.getElementById("fileupload").files.length == 0) {
+        disableButton();
+        required(document.getElementById("fileupload"));
+    } else {
+        satisfied(document.getElementById("fileupload"));
+    }
+
+    if (!l1dd.value || parseInt(l1dd.value) == -1) {
+        disableButton();
+        required(l1dd);
+    } else {
+        satisfied(l1dd);
+    }
+    if (!l2dd.value || parseInt(l2dd.value) == -1) {
+        disableButton();
+        required(l2dd);
+    } else {
+        satisfied(l2dd);
+    }
+
+    if (!l4dd.value || parseInt(l4dd.value) == -1) {
+        disableButton();
+        required(l4dd);
+    } else {
+        satisfied(l4dd);
+    }
+
+    if (!l6dd.value || parseInt(l6dd.value) == -1) {
+        disableButton();
+        required(l6dd);
+    } else {
+        satisfied(l6dd);
+    }
+
+    if (!l3dd.value || parseInt(l3dd.value) == -1) {
+        disableButton();
+        required(l3dd);
+    } else {
+        satisfied(l3dd);
+    }
+
+    if (document.getElementById('Feasibility').style.display == 'block') {
+        if (!l5dd.value || parseInt(l5dd.value) == -1) {
+            disableButton();
+            required(l5dd);
+        } else {
+            satisfied(l5dd);
+        }
+    }
+    if (document.getElementById('CoreContext').style.display == 'block') {
+        if (!l7dd.value || parseInt(l7dd.value) == -1) {
+            disableButton();
+            required(l7dd);
+        } else {
+            satisfied(l7dd);
+        }
+    }
+    if (document.getElementById('AnalysisDone').style.display == 'block') {
+        if (!l8dd.value || parseInt(l8dd.value) == -1) {
+            disableButton();
+            required(l8dd);
+        } else {
+            satisfied(l8dd);
+
+        }
+    }
+    if (document.getElementById('FPVScenarioName').style.display == 'block') {
+        if (!fpv_scenario_name.value) {
+            disableButton();
+            required(fpv_scenario_name);
+        } else {
+            satisfied(fpv_scenario_name);
+        }
+    }
+
+    if (document.getElementById('TeamMember').style.display == 'block') {
+        if (!team_member.value || parseInt(team_member.value) == -1) {
+            disableButton();
+            required(team_member);
+        } else {
+            satisfied(team_member);
+        }
+    }
+
+    if (document.getElementById('Year').style.display == 'block') {
+        var isyear = yearSelection();
+        if (!isyear) {
+            disableButton();
+        }
+
+    }
+
+    if (document.getElementById('CFAVersionUsed').style.display == 'block') {
+        var iscfa = cfaSelection();
+        if (!iscfa) {
+            disableButton();
+        }
+
+    }
+
+    if (document.getElementById('RMSVersionUsed').style.display == 'block') {
+        var isrms = rmsSelection();
+        if (!isrms) {
+            disableButton();
+        }
+
+    }
+
+    if (document.getElementById('Geography').style.display == 'block') {
+        var isgeo = geoSelection();
+        if (!isgeo) {
+            disableButton();
+        }
+    }
+
+    if (document.getElementById('Segments').style.display == 'block') {
+        if (!segments.value) {
+            disableButton();
+            required(segments);
+        } else {
+            satisfied(segments);
+        }
+    }
+
+    if (document.getElementById('Source').style.display == 'block') {
+        if (!source.value || parseInt(source.value) == -1) {
+            disableButton();
+            required(source);
+        } else {
+            satisfied(source);
+        }
+    }
+
+    if (document.getElementById('DataSource').style.display == 'block') {
+        if (!data_source.value || parseInt(data_source.value) == -1) {
+            disableButton();
+            required(data_source);
+        } else {
+            satisfied(data_source);
+        }
+    }
+
+    if (document.getElementById('MMVersion').style.display == 'block') {
+        if (!mm_version.value) {
+            disableButton();
+            required(mm_version);
+        } else {
+            satisfied(mm_version);
+        }
+    }
+
+    if (document.getElementById('GSMVersion').style.display == 'block') {
+        if (!gsm_version.value || parseInt(gsm_version.value) == -1) {
+            disableButton();
+            required(gsm_version);
+        } else {
+            satisfied(gsm_version);
+        }
+    }
+
+    if (document.getElementById('SourceMarketGrowth').style.display == 'block') {
+        if (!src_mkt_growth.value || parseInt(src_mkt_growth.value) == -1) {
+            disableButton();
+            required(src_mkt_growth);
+        } else {
+            satisfied(src_mkt_growth);
+        }
+    }
+
+    if (document.getElementById('SourceCompanyGrowth').style.display == 'block') {
+        if (!scr_cmpny_growth.value || parseInt(scr_cmpny_growth.value) == -1) {
+            disableButton();
+            required(scr_cmpny_growth);
+        } else {
+            satisfied(scr_cmpny_growth);
+        }
+    }
+
+    if (document.getElementById('GGVersion').style.display == 'block') {
+        if (!gg_version.value) {
+            disableButton();
+            required(gg_version);
+        } else {
+            satisfied(gg_version);
+        }
+    }
+
+    if (document.getElementById('Granularity').style.display == 'block') {
+        if (!granularity.value) {
+            disableButton();
+            required(granularity);
+        } else {
+            satisfied(granularity);
+        }
+    }
+
+    if (document.getElementById('RMSVersion').style.display == 'block') {
+        var isrms = rms();
+        if (!isrms) {
+            disableButton();
+        }
+    }
+
+    if (document.getElementById('CFAVersion').style.display == 'block') {
+        var iscfa = cfa();
+        if (!iscfa) {
+            disableButton();
+        }
+    }
+
+    if (document.getElementById('MVDVersion').style.display == 'block') {
+        if (!mvd_version.value) {
+            disableButton();
+            required(mvd_version);
+        } else {
+            satisfied(mvd_version);
+        }
+    }
+
+    if (document.getElementById('Version').style.display == 'block') {
+        if (!version.value) {
+            disableButton();
+            required(version);
+        } else {
+            satisfied(version);
+        }
+    }
+    /*
+    if (document.getElementById('RMSThreshold').style.display == 'block')  {
+        if (!rms_threshold.value) {
+            disableButton();
+        }
+    }
+
+    if (document.getElementById('RevenueThreshold').style.display == 'block')  {
+        if (!revenue_threshold.value) {
+            disableButton();
+        }
+    }
+    */
+
+    /*
+    if (document.getElementById('RMSVersionUsed').style.display == 'block')  {
+        if (!rms_version_used.value || parseInt(rms_version_used.value) == -1) {
+            disableButton();
+        }
+    }
+    */
+
+
+    if (document.getElementById('LastPeriodConsYr').style.display == 'block') {
+        if (!last_period_considered_year.value || parseInt(last_period_considered_year.value) == -1) {
+            disableButton();
+            required(last_period_considered_year);
+        } else {
+            satisfied(last_period_considered_year);
+        }
+    }
+
+    if (document.getElementById('LastPeriodConsQtr').style.display == 'block') {
+        if (!last_period_considered_quarter.value || parseInt(last_period_considered_quarter.value) == -1) {
+            disableButton();
+            required(last_period_considered_quarter);
+        } else {
+            satisfied(last_period_considered_quarter);
+        }
+    }
+    /*
+    if (document.getElementById('CFAVersionUsed').style.display == 'block')  {
+        if (!cfa_version_used.value || parseInt(cfa_version_used.value) == -1) {
+            disableButton();
+        }
+    }
+    */
+    if (document.getElementById('ReleaseDate').style.display == 'block') {
+        if (!release_date.value) {
+            disableButton();
+            required(release_date);
+        } else {
+            satisfied(release_date);
+        }
+    }
+
+    if (document.getElementById('MasterSlideVer').style.display == 'block') {
+        var isms = master_slide();
+        if (!isms) {
+            disableButton();
+        }
+    }
+
+    if (document.getElementById('MasterSlideVerUsed').style.display == 'block' && l7dd.value != 'Asset Swap') {
+        var isms = master_slide_version_used();
+        debugger
+        if (!isms) {
+            disableButton();
+        }
+    }
+
+}
+
+function hidetags() {
+    TeamMember.style.display = "none";
+    Year.style.display = "none";
+    Source.style.display = "none";
+    Comments.style.display = "none";
+    LastPeriodConsYr.style.display = "none";
+    LastPeriodConsQtr.style.display = "none";
+    ReleaseDate.style.display = "none";
+    MasterSlideVer.style.display = "none";
+    CFAVersionUsed.style.display = "none";
+    MasterSlideVerUsed.style.display = "none";
+    RMSThreshold.style.display = "none";
+    RevenueThreshold.style.display = "none";
+    RMSVersionUsed.style.display = "none";
+    Granularity.style.display = "none";
+    DataSource.style.display = "none";
+    RMSVersion.style.display = "none";
+    FPVScenarioName.style.display = "none";
+    MVDVersion.style.display = "none";
+    CFAVersion.style.display = "none";
+    Version.style.display = "none";
+    Geography.style.display = "none";
+    Segments.style.display = "none";
+    MMVersion.style.display = "none";
+    GSMVersion.style.display = "none";
+    SourceMarketGrowth.style.display = "none";
+    SourceCompanyGrowth.style.display = "none";
+    GGVersion.style.display = "none";
+}
+
+function setSelectedIndex(s, valsearch)
+{
+// Loop through all the items in drop down list
+for (i = 0; i< s.options.length; i++)
+{
+if (s.options[i].value == valsearch)
+{
+// Item is found. Set its property and exit
+s.options[i].selected = true;
+break;
+}
+}
+return;
+}
+
+
+function getLevel2() {
+    let parent_select = document.getElementById('level1');
+    let child_select = document.getElementById('level2');
+    //  console.log(parent_select)
+    parent_select.onchange = function() {
+        // Remove dropdown options using the function:
+        removeOptions(document.getElementById('level3'))
+        removeOptions(document.getElementById('level4'))
+        removeOptions(document.getElementById('level5'))
+        removeOptions(document.getElementById('level6'))
+        removeOptions(document.getElementById('level7'))
+        removeOptions(document.getElementById('level8'))
+        parent = parent_select.value;
+        document.getElementById('loading').style.display = 'block';
+        fetch('/get_level2/' + parent).then(function(response) {
+            response.json().then(function(data) {
+                let optionHTML = '';
+                for (let ch of data.child) {
+                    optionHTML += '<option value="' + ch.id + '">' + ch.name + '</option>';
+                }
+                child_select.innerHTML = optionHTML;
+            })
+            document.getElementById('loading').style.display = 'none';
+
+        });
+        checkallinputs();
+    }
+}
+
+function getLevel3() {
+    let lv1_select = document.getElementById('level1');
+    let lv2_select = document.getElementById('level2');
+    let lv3_select = document.getElementById('level3');
+    let lv4_select = document.getElementById('level4');
+    lv2_select.onchange = function() {
+        // Remove dropdown options using the function:
+        removeOptions(document.getElementById('level4'))
+        removeOptions(document.getElementById('level5'))
+        removeOptions(document.getElementById('level6'))
+        removeOptions(document.getElementById('level7'))
+        removeOptions(document.getElementById('level8'))
+        lv1 = lv1_select.value;
+        lv2 = lv2_select.value;
+        lv3 = lv3_select.value;
+        document.getElementById('loading').style.display = 'block';
+        fetch('/get_level3/' + lv1 + '/' + lv2).then(function(response) {
+            response.json().then(function(data) {
+                let optionHTML = '';
+                for (let ch of data.child) {
+                    optionHTML += '<option value"' + ch.id + '">' + ch.name + '</option>';
+                }
+                lv3_select.innerHTML = optionHTML;
+
+                var ddlArray = new Array();
+                var ddl = document.getElementById('level3');
+                for (i = 0; i < ddl.options.length; i++) {
+                    ddlArray[i] = ddl.options[i].value;
+                }
+                SpeSubSec.style.display = ddlArray.includes("*") == true ? "none" : "block";
+
+            });
+            document.getElementById('loading').style.display = 'none';
+        });
+        document.getElementById('loading').style.display = 'block';
+        fetch('/get_level4/' + lv1 + '/' + lv2 + '/*').then(function(response) {
+            response.json().then(function(data) {
+                let optionHTML = '';
+                for (let ch of data.child) {
+                    optionHTML += '<option value"' + ch.id + '">' + ch.name + '</option>';
+                }
+                lv4_select.innerHTML = optionHTML;
+            });
+            document.getElementById('loading').style.display = 'none';
+        });
+
+        checkallinputs();
+    }
+}
+
+function getLevel4() {
+    let lv1_select = document.getElementById('level1');
+    let lv2_select = document.getElementById('level2');
+    let lv3_select = document.getElementById('level3');
+    let lv4_select = document.getElementById('level4');
+    lv3_select.onchange = function() {
+        removeOptions(document.getElementById('level5'))
+        removeOptions(document.getElementById('level6'))
+        removeOptions(document.getElementById('level7'))
+        removeOptions(document.getElementById('level8'))
+        lv1 = lv1_select.value;
+        lv2 = lv2_select.value;
+        lv3 = lv3_select.value == "" ? "*" : lv3_select.value;
+        document.getElementById('loading').style.display = 'block';
+        fetch('/get_level4/' + lv1 + '/' + lv2 + '/' + lv3).then(function(response) {
+            response.json().then(function(data) {
+                let optionHTML = '';
+                for (let ch of data.child) {
+                    optionHTML += '<option value"' + ch.id + '">' + ch.name + '</option>';
+                }
+                lv4_select.innerHTML = optionHTML;
+                var op = lv4_select.getElementsByTagName("option");
+                if (lv1=="Not Applicable" || lv2=="Not Applicable" || lv3=="Not Applicable"){
+                   for (var i = 0; i < op.length; i++) {
+                      // lowercase comparison for case-insensitivity
+                      if (op[i].value == "FPP" || op[i].value == "Data Adequacy" ) {
+                        op[i].disabled = true;
+                      }
+                    }
+                } else {
+                    for (var i = 0; i < op.length; i++) {
+                      // lowercase comparison for case-insensitivity
+                        op[i].disabled = false;
+                    }
+                }
+        });
+
+            document.getElementById('loading').style.display = 'none';
+        });
+
+        checkallinputs();
+    }
+}
+
+function getLevel5() {
+    let lv1_select = document.getElementById('level1');
+    let lv2_select = document.getElementById('level2');
+    let lv3_select = document.getElementById('level3');
+    let lv4_select = document.getElementById('level4');
+    let lv5_select = document.getElementById('level5');
+    let lv6_select = document.getElementById('level6');
+    let lv7_select = document.getElementById('level7');
+
+    lv4_select.onchange = function() {
+        removeOptions(document.getElementById('level6'))
+        removeOptions(document.getElementById('level7'))
+        removeOptions(document.getElementById('level8'))
+
+        lv1 = lv1_select.value;
+        lv2 = lv2_select.value;
+        lv3 = lv3_select.value == "" ? "*" : lv3_select.value;
+        lv4 = lv4_select.value;
+        Feasibility.style.display = lv4 == "Data Adequacy" ? "block" : "none";
+        document.getElementById('loading').style.display = 'block';
+        fetch('/get_level5/' + lv1 + '/' + lv2 + '/' + lv3 + '/' + lv4).then(function(response) {
+            response.json().then(function(data) {
+                let optionHTML = '';
+                for (let ch of data.child) {
+                    optionHTML += '<option value"' + ch.id + '">' + ch.name + '</option>';
+                }
+                lv5_select.innerHTML = optionHTML;
+            });
+            document.getElementById('loading').style.display = 'none';
+        });
+        document.getElementById('loading').style.display = 'block';
+        fetch('/get_level7/' + lv4).then(function(response) {
+            response.json().then(function(data) {
+                let optionHTML = '';
+                for (let ch of data.child) {
+                    optionHTML += '<option value"' + ch.id + '">' + ch.name + '</option>';
+                }
+                lv7_select.innerHTML = optionHTML;
+            });
+            document.getElementById('loading').style.display = 'none';
+        });
+        document.getElementById('loading').style.display = 'block';
+        fetch('/project/' + lv1 + '/' + lv2 + '/' + lv3 + '/' + lv4 + '/' + '*').then(function(response) {
+            response.json().then(function(data) {
+                let optionHTML = '';
+                for (let proj of data.projects) {
+                    optionHTML += '<option value"' + proj.id + '">' + proj.name + '</option>';
+                }
+                lv6_select.innerHTML = optionHTML;
+            });
+            document.getElementById('loading').style.display = 'none';
+        });
+        hidetags();
+        
+
+        if (lv4 == 'Data Adequacy') {
+            document.getElementById("level7label").innerHTML = "Type of Document"
+        } else if(lv4 == 'FPP'){
+            document.getElementById("level7label").innerHTML = "Core context and gaps"
+        } else{
+            document.getElementById("level7label").innerHTML = "Category"
+        }
+
+        if (lv4 == 'Data Adequacy') {
+            TeamMember.style.display = "block";
+            Year.style.display = "block";
+            Geography.style.display = "none";
+            Comments.style.display = "block";
+        } else if(lv4 == 'IP Development') {
+            TeamMember.style.display = "block";
+            Comments.style.display = "block";
+        }
+        checkallinputs();
+    }
+}
+
+function getProjects() {
+    let lv1_select = document.getElementById('level1');
+    let lv2_select = document.getElementById('level2');
+    let lv3_select = document.getElementById('level3');
+    let lv4_select = document.getElementById('level4');
+    let lv5_select = document.getElementById('level5');
+    let lv6_select = document.getElementById('level6');
+    lv5_select.onchange = function() {
+        // removeOptions(document.getElementById('level7'))
+        //  removeOptions(document.getElementById('level8'))
+        lv1 = lv1_select.value;
+        lv2 = lv2_select.value;
+        lv3 = lv3_select.value == "" ? "*" : lv3_select.value;
+        lv4 = lv4_select.value;
+        lv5 = lv5_select.value;
+        document.getElementById('loading').style.display = 'block';
+        fetch('/project/' + lv1 + '/' + lv2 + '/' + lv3 + '/' + lv4 + '/' + lv5).then(function(response) {
+            response.json().then(function(data) {
+                let optionHTML = '';
+                for (let proj of data.projects) {
+                    optionHTML += '<option value"' + proj.id + '">' + proj.name + '</option>';
+                }
+                lv6_select.innerHTML = optionHTML;
+            });
+            document.getElementById('loading').style.display = 'none';
+        });
+
+        checkallinputs();
+    }
+}
+var cfaversionarray = [];
+var rmsversionarray = [];
+
+function rms_cfa_version() {
+    let lv1_select = document.getElementById('level1');
+    let lv2_select = document.getElementById('level2');
+    let lv3_select = document.getElementById('level3');
+    let lv4_select = document.getElementById('level4');
+    let lv5_select = document.getElementById('level5');
+    let lv6_select = document.getElementById('level6');
+    let rms_select = document.getElementById('rms_version_used');
+    let cfa_select = document.getElementById('cfa_version_used');
+    let data_source_select = document.getElementById('data_source');
+
+    lv6_select.onchange = function() {
+        document.getElementById('level7').value='';
+        lv1 = lv1_select.value;
+        lv2 = lv2_select.value;
+        lv3 = lv3_select.value == "" ? "*" : lv3_select.value;
+        lv4 = lv4_select.value;
+        lv5 = lv5_select.value == "" ? "*" : lv5_select.value;
+        lv6 = lv6_select.value;
+        fetch('/rms_cfa_version/' + lv1 + '/' + lv2 + '/' + lv3 + '/' + lv4 + '/' + lv5 + '/' + lv6).then(function(response) {
+            response.json().then(function(data) {
+                let optionHTML1 = '';
+                for (let ver of data.versions.rms) {
+                    if (ver && parseInt(ver.id) !== -1) {
+                        let verId = ver.id.match(/(\d+)/);
+                        verId = verId ? verId[0] : 0;
+                        optionHTML1 += '<li>' +
+                            '<input id="rms_version_used-' + verId + '" name="rms_version_used" onclick="rmsOnchange(\'' + verId + '\')" type="checkbox" value="' +
+                            verId + '">' +
+                            '<label for="rms_version_used-' + verId +
+                            '">' + ver.name + '</label>' + '</li>'
+
+                    }
+
+                    // '<option value"' + ver.id + '">' + ver.name + '</option>';
+                }
+                rms_select.innerHTML = optionHTML1;
+                let optionHTML2 = '';
+                for (let ver of data.versions.cfa) {
+                    if (ver && parseInt(ver.id) !== -1) {
+                        let verId = ver.id.match(/(\d+)/);
+                        verId = verId ? verId[0] : 0;
+                        optionHTML2 += '<li>' +
+                            '<input id="cfa_version_used-' + verId + '" name="cfa_version_used" onclick="cfaOnchange(\'' + verId + '\')" type="checkbox" value="' +
+                            verId + '">' +
+                            '<label for="cfa_version_used-' + verId +
+                            '">' + ver.name + '</label>' + '</li>'
+                    }
+
+                    // optionHTML2 += '<option value"' + ver.id + '">' + ver.name + '</option>';
+                }
+                cfa_select.innerHTML = optionHTML2;
+            });
+        });
+
+        fetch('/data_source_options/' + lv1 + '/' + lv2 + '/' + lv3 + '/' + lv4 + '/' + lv5 + '/' + lv6).then(function(response) {
+            response.json().then(function(data) {
+                let optionHTML1 = '';
+                for (let src of data.sources) {
+                    optionHTML1 += '<option value"' + src.id + '">' + src.name + '</option>';
+                }
+                data_source_select.innerHTML = optionHTML1;
+            });
+        });
+
+        checkallinputs();
+
+    }
+}
+
+function rmsOnchange(id) {
+    if (document.getElementById('rms_version_used-' + id).checked == true) {
+        if (id==0){
+            rmsversionarray.push('#N/A')
+        }else{
+            rmsversionarray.push('v'+id)
+        }
+    } else {
+        const index = rmsversionarray.indexOf(id);
+        if (index > -1) {
+            rmsversionarray.splice(index, 1);
+        }
+    }
+    document.getElementById('rms_version_used').value = rmsversionarray.toString();
+    CheckNAChecked("rms_version_used");
+    checkallinputs();
+    console.log(document.getElementById('rms_version_used').value)
+}
+
+function cfaOnchange(id) {
+    if (document.getElementById('cfa_version_used-' + id).checked == true) {
+        if (id==0){
+            cfaversionarray.push('#N/A')
+        }else{
+            cfaversionarray.push('v'+id)
+        }
+    } else {
+        const index = cfaversionarray.indexOf(id);
+        if (index > -1) {
+            cfaversionarray.splice(index, 1);
+        }
+    }
+    document.getElementById('cfa_version_used').value = cfaversionarray.toString();
+    CheckNAChecked("cfa_version_used");
+    checkallinputs();
+}
+
+function getLevel8() {
+
+    let lv4_select = document.getElementById('level4');
+    let lv7_select = document.getElementById('level7');
+    let lv8_select = document.getElementById('level8');
+    let lv6_select = document.getElementById('level6');
+    lv7_select.onchange = function() {
+        document.getElementById('dataGridRMS').style.display = 'none';
+        project = lv6_select.value;
+        lv4 = lv4_select.value;
+        lv7 = lv7_select.value;
+        document.getElementById('loading').style.display = 'block';
+        fetch('/get_level8/' + lv4 + '/' + lv7).then(function(response) {
+            response.json().then(function(data) {
+                let optionHTML = '';
+                for (let ch of data.child) {
+                    optionHTML += '<option value"' + ch.id + '">' + ch.name + '</option>';
+                }
+                lv8_select.innerHTML = optionHTML;
+                var ddlArray = new Array();
+                var ddl = document.getElementById('level8');
+                for (i = 0; i < ddl.options.length; i++) {
+                    ddlArray[i] = ddl.options[i].value;
+                }
+
+                AnalysisDone.style.display = ddlArray.includes("*") == true ? "none" : "block";
+            });
+            document.getElementById('loading').style.display = 'none';
+        });
+        document.getElementById("level8label").innerHTML = "Analysis Done"
+
+        if (lv7 == 'Research') {
+            hidetags();
+            TeamMember.style.display = "block";
+            Year.style.display = "block";
+            Source.style.display = "block";
+            Comments.style.display = "block";
+        } else if (lv7 == 'Master Slides') {
+            hidetags();
+            TeamMember.style.display = "block";
+            ReleaseDate.style.display = "block";
+            MasterSlideVer.style.display = "block";
+            Comments.style.display = "block";
+        } else if (lv7 == 'FPV') {
+            hidetags();
+            document.getElementById("level8label").innerHTML = "FPV Scenario"
+            FPVScenarioName.style.display = "block";
+            TeamMember.style.display = "block";
+            CFAVersionUsed.style.display = "block";
+            Comments.style.display = "block";
+            MasterSlideVerUsed.style.display = "block";
+        } else if (lv7 == 'Asset Swap') {
+            hidetags();
+            document.getElementById("level8label").innerHTML = "Asset Swap Scenario"
+            TeamMember.style.display = "block";
+            RMSThreshold.style.display = "block";
+            RevenueThreshold.style.display = "block";
+            RMSVersionUsed.style.display = "block";
+            CFAVersionUsed.style.display = "block";
+            Comments.style.display = "block";
+            MasterSlideVerUsed.style.display = "block";
+        } else if (lv7 == 'RMS') {
+            hidetags();
+            TeamMember.style.display = "block";
+            Granularity.style.display = "block";
+            Year.style.display = "block";
+            RMSVersion.style.display = "block";
+            Comments.style.display = "block";
+            MasterSlideVerUsed.style.display = "block";
+        } else if (lv7 == 'Perception') {
+            hidetags();
+            TeamMember.style.display = "block";
+            LastPeriodConsYr.style.display = "block";
+            LastPeriodConsQtr.style.display = "block";
+            MVDVersion.style.display = "block";
+            Comments.style.display = "block";
+            MasterSlideVerUsed.style.display = "block";
+        } else if (lv7 == 'Performance') {
+            hidetags();
+            TeamMember.style.display = "block";
+            Year.style.display = "block";
+            RMSVersionUsed.style.display = "block";
+            CFAVersion.style.display = "block";
+            Comments.style.display = "block";
+            MasterSlideVerUsed.style.display = "block";
+        } else if (lv7 == 'Others') {
+            hidetags();
+            TeamMember.style.display = "block";
+            Year.style.display = "block";
+            Version.style.display = "block";
+            Comments.style.display = "block";
+        }
+        checkallinputs();
+        if (lv4=='FPP'){
+        fetch('/get_already_uploaded_files/' + project + '/' + lv7).then(function(response) {
+            response.json().then(function(data) {
+                resp = data.response
+                if (resp == false) {
+                    document.getElementById('NoResult').style.display = 'block';
+                } else {
+                    var proj_data = resp.toString();
+                    //alert(document.getElementById('ProjectData').innerText)
+                    showResult(proj_data);
+                }
+            });
+        });
+        }
+    }
+}
+
+function showResult(proj_data) {
+    document.getElementById('NoResult').style.display = 'none';
+    let columnDefs = [];
+    let projObj = proj_data;
+    projObj = JSON.parse(projObj);
+    var headers = []
+    for (const ob of projObj) {
+        headers.push(...(Object.keys(ob)))
+    }
+    var unique_headers = []
+    $.each(headers, function(i, el) {
+        if ($.inArray(el, unique_headers) === -1) unique_headers.push(el);
+    });
+    for (let colm of unique_headers) {
+        if ((['File Size', 'Save Path', 'Created on', 'Created By', 'Project ID', 'Validated']).includes(colm)){
+            continue;}
+        else if (colm === 'RMS Version Used') {
+            columnDefs.push({
+                //headerName: datarow.toString(),
+                field: colm,
+                sortable: true,
+                filter: true,
+                resizable: true,
+                cellRenderer: HyperlinkRender
+            })
+        } else if (colm === 'CFA Version Used') {
+            columnDefs.push({
+                //headerName: datarow.toString(),
+                field: colm,
+                sortable: true,
+                filter: true,
+                resizable: true,
+                cellRenderer: HyperlinkRenderCFA
+            })
+        } else if (colm === 'Master Slide Version Used') {
+            columnDefs.push({
+                //headerName: datarow.toString(),
+                field: colm,
+                sortable: true,
+                filter: true,
+                resizable: true,
+                cellRenderer: HyperlinkRenderMS
+            })
+        }
+        else {   columnDefs.push({
+                headerName: colm,
+                field: colm,
+                filter: true,
+                resizable: true,
+                sortable: true,
+            })
+        }
+    }
+    document.getElementById('dataGrid').innerHTML = '"<span style=\"color:white\">Following Files have already been uploaded for selected project and core-context:</span>"<br><br>';
+    gridOptions = {
+        columnDefs: columnDefs,
+        rowData: projObj
+    }
+    var gridDiv = document.querySelector('#dataGrid');
+    new agGrid.Grid(gridDiv, gridOptions);
+    setTimeout(function() {
+        window.scrollTo({
+            top: 1100,
+            behavior: 'smooth',
+        });
+    }, 2);
+
+}
+
+function showResult_RMS_CFA(proj_data, l7) {
+    document.getElementById('dataGridRMS').style.display = 'block';
+    //document.getElementById('NoResult').style.display = 'none';
+    let columnDefs = [];
+    let projObj = proj_data;
+    projObj = JSON.parse(projObj);
+    var headers = []
+    for (const ob of projObj) {
+        headers.push(...(Object.keys(ob)))
+    }
+    var unique_headers = []
+    $.each(headers, function(i, el) {
+        if ($.inArray(el, unique_headers) === -1) unique_headers.push(el);
+    });
+    for (let colm of unique_headers) {
+        if ((['File Size', 'Save Path', 'Created on', 'Created By', 'Project ID', 'Validated']).includes(colm)){
+            continue;}
+        else if (colm === 'RMS Version Used') {
+            columnDefs.push({
+                //headerName: datarow.toString(),
+                field: colm,
+                sortable: true,
+                filter: true,
+                resizable: true,
+                cellRenderer: HyperlinkRender
+            })
+        } else if (colm === 'CFA Version Used') {
+            columnDefs.push({
+                //headerName: datarow.toString(),
+                field: colm,
+                sortable: true,
+                filter: true,
+                resizable: true,
+                cellRenderer: HyperlinkRenderCFA
+            })
+        } else if (colm === 'Master Slide Version Used') {
+            columnDefs.push({
+                //headerName: datarow.toString(),
+                field: colm,
+                sortable: true,
+                filter: true,
+                resizable: true,
+                cellRenderer: HyperlinkRenderMS
+            })
+        }
+        else {   columnDefs.push({
+                headerName: colm,
+                field: colm,
+                filter: true,
+                resizable: true,
+                sortable: true,
+            })
+        }
+    }
+    document.getElementById('dataGridRMS').innerHTML = '"<span style=\"color:white\"><br><br>Following Files have already been uploaded for selected project and selected '+l7 +' version:</span>"<br><br>';
+    gridOptions = {
+        columnDefs: columnDefs,
+        rowData: projObj
+    }
+    var gridDiv = document.querySelector('#dataGridRMS');
+    new agGrid.Grid(gridDiv, gridOptions);
+    setTimeout(function() {
+        window.scrollTo({
+            top: 1500,
+            behavior: 'smooth',
+        });
+    }, 2);
+
+}
+
+
+function HyperlinkRender(params) {
+    let linkToSend = '';
+    if (params.value) {
+        var arr = params.value;
+        for (const link of arr) {
+            if (linkToSend !== '') {
+                linkToSend += `, ` + `<a href="#" onclick="updateSearch('` + link + `')">` + link + `</a>`;
+            } else {
+                linkToSend += `<a href="#" onclick="updateSearch('` + link + `')">` + link + `</a>`;
+            }
+
+        }
+        //   return linkToSend;
+    }
+    return linkToSend;
+
+    //   return( `<a href="#" onclick="updateSearch('`+ params.value +`')">`+ params.value + `</a>`);
+}
+
+function HyperlinkRenderCFA(params) {
+    var linkToSend = '';
+    if (params.value) {
+        var arr = params.value;
+        for (const link of arr) {
+            if (linkToSend !== '') {
+                linkToSend += `, ` + `<a href="#" onclick="updateSearchCFA('` + link + `')">` + link + `</a>`;
+            } else {
+                linkToSend += `<a href="#" onclick="updateSearchCFA('` + link + `')">` + link + `</a>`;
+            }
+
+        }
+        // return linkToSend
+    }
+    return linkToSend;
+
+    //    return( `<a href="#" onclick="updateSearchCFA('`+ params.value +`')">`+ params.value + `</a>`);
+}
+
+function HyperlinkRenderMS(params) {
+    var linkToSend = '';
+    if (params.value) {
+        var arr = params.value;
+        for (const link of arr) {
+            if (linkToSend !== '') {
+                linkToSend += `, ` + `<a href="#" onclick="updateSearchMS('` + link + `')">` + link + `</a>`;
+            } else {
+                linkToSend += `<a href="#" onclick="updateSearchMS('` + link + `')">` + link + `</a>`;
+            }
+
+        }
+        // return linkToSend
+    }
+    return linkToSend;
+
+    //    return( `<a href="#" onclick="updateSearchMS('`+ params.value +`')">`+ params.value + `</a>`);
+}
+
+function updateSearch(params) {
+    let lv6_select = document.getElementById('level6');
+    project = lv6_select.value;
+    fetch('/get_already_uploaded_files_RMS/' + project + '/' + params).then(function(response) {
+            response.json().then(function(data) {
+                resp = data.response
+                var proj_data = resp.toString();
+                showResult_RMS_CFA(proj_data, 'RMS');
+
+            });
+        });
+}
+
+function updateSearchCFA(params) {
+    let lv6_select = document.getElementById('level6');
+    project = lv6_select.value;
+    fetch('/get_already_uploaded_files_CFA/' + project + '/' + params).then(function(response) {
+            response.json().then(function(data) {
+                resp = data.response
+                var proj_data = resp.toString();
+                showResult_RMS_CFA(proj_data, 'CFA');
+
+            });
+        });
+}
+
+function updateSearchMS(params) {
+    let lv6_select = document.getElementById('level6');
+    project = lv6_select.value;
+    fetch('/get_already_uploaded_files_MS/' + project + '/' + params).then(function(response) {
+            response.json().then(function(data) {
+                resp = data.response
+                var proj_data = resp.toString();
+                showResult_RMS_CFA(proj_data, 'Master Slide');
+
+            });
+        });
+}
+
+function gettags() {
+    let lv8_select = document.getElementById('level8');
+    lv8_select.onchange = function() {
+        lv8 = lv8_select.value;
+
+        if (lv8 == 'Market Maps') {
+            hidetags();
+            TeamMember.style.display = "block";
+            Year.style.display = "block";
+            Geography.style.display = "block";
+            Segments.style.display = "block";
+            DataSource.style.display = "block";
+            MMVersion.style.display = "block";
+            Comments.style.display = "block";
+            MasterSlideVerUsed.style.display = "block";
+
+        } else if (lv8 == 'Growth Share Matrix') {
+            hidetags();
+            TeamMember.style.display = "block";
+            Year.style.display = "block";
+            Geography.style.display = "block";
+            Segments.style.display = "block";
+            RMSVersionUsed.style.display = "block";
+            Source.style.display = "block";
+            GSMVersion.style.display = "block";
+            Comments.style.display = "block";
+            MasterSlideVerUsed.style.display = "block";
+
+        } else if (lv8 == 'Growth Growth') {
+            hidetags();
+            TeamMember.style.display = "block";
+            Year.style.display = "block";
+            Geography.style.display = "block";
+            Segments.style.display = "block";
+            SourceMarketGrowth.style.display = "block";
+            SourceCompanyGrowth.style.display = "block";
+            GGVersion.style.display = "block";
+            Comments.style.display = "block";
+            MasterSlideVerUsed.style.display = "block";
+
+        }
+        checkallinputs();
+    }
+}
+
+function show_data_adequacy_tags() {
+    hidetags();
+    TeamMember.style.display = "block";
+    Year.style.display = "block";
+    Geography.style.display = "block";
+    Comments.style.display = "block";
+    checkallinputs();
+}
+
+if (l5display == "True") {
+    show_data_adequacy_tags();
+}
+let lv4_select = document.getElementById('level4');
+l4 = lv4_select.value;
+if (l4 == "IP Development") {
+    CoreContext.style.display = 'block';
+    document.getElementById("level7label").innerHTML = "Category"
+    TeamMember.style.display = "block";
+    Comments.style.display = "block";
+
+}
+getLevel2();
+getLevel3();
+getLevel4();
+getLevel5();
+getProjects();
+rms_cfa_version();
+getLevel8();
+gettags();
+checkallinputs();
+
+particlesJS("particles-js", {
+    "particles": {
+        "number": {
+            "value": 80,
+            "density": {
+                "enable": true,
+                "value_area": 800
+            }
+        },
+        "color": {
+            "value": "#ffffff"
+        },
+        "shape": {
+            "type": "circle",
+            "stroke": {
+                "width": 0,
+                "color": "#000000"
+            },
+            "polygon": {
+                "nb_sides": 5
+            },
+            "image": {
+                "src": "img/github.svg",
+                "width": 100,
+                "height": 100
+            }
+        },
+        "opacity": {
+            "value": 0.5,
+            "random": false,
+            "anim": {
+                "enable": false,
+                "speed": 1,
+                "opacity_min": 0.1,
+                "sync": false
+            }
+        },
+        "size": {
+            "value": 3,
+            "random": true,
+            "anim": {
+                "enable": false,
+                "speed": 40,
+                "size_min": 0.1,
+                "sync": false
+            }
+        },
+        "line_linked": {
+            "enable": true,
+            "distance": 150,
+            "color": "#ffffff",
+            "opacity": 0.4,
+            "width": 1
+        },
+        "move": {
+            "enable": true,
+            "speed": 6,
+            "direction": "none",
+            "random": false,
+            "straight": false,
+            "out_mode": "out",
+            "bounce": false,
+            "attract": {
+                "enable": false,
+                "rotateX": 600,
+                "rotateY": 1200
+            }
+        }
+    },
+    "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+            "onhover": {
+                "enable": true,
+                "mode": "repulse"
+            },
+            "onclick": {
+                "enable": true,
+                "mode": "push"
+            },
+            "resize": true
+        },
+        "modes": {
+            "grab": {
+                "distance": 400,
+                "line_linked": {
+                    "opacity": 1
+                }
+            },
+            "bubble": {
+                "distance": 400,
+                "size": 40,
+                "duration": 2,
+                "opacity": 8,
+                "speed": 3
+            },
+            "repulse": {
+                "distance": 200,
+                "duration": 0.4
+            },
+            "push": {
+                "particles_nb": 4
+            },
+            "remove": {
+                "particles_nb": 2
+            }
+        }
+    },
+    "retina_detect": true
+});
+</script>
+
+{% endblock upload %}
+{% endblock content %}

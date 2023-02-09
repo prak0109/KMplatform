@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% extends 'layout.html' %}
+{% block body %}
+
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+    <link href="{{ url_for('static', filename='mdb/css/addons/datatables.min.css')}}" rel="stylesheet">
+<!-- MDBootstrap Datatables  -->
+<script type="text/javascript" src="{{ url_for('static', filename='mdb/js/jquery.min.js')}}"></script>
+<!--    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>-->
+<script type="text/javascript" src="{{ url_for('static', filename='mdb/js/addons/datatables.min.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='mdb/js/mdb.min.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='mdb/js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='mdb/js/popper.min.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/tablecsvexporter.js')}}"></script>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+<link href="{{ url_for('static', filename='mdb/css/bootstrap.min.css')}}" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="{{ url_for('static', filename='mdb/css/mdb.min.css')}}" rel="stylesheet">
+<!-- Your custom styles (optional) -->
+<link href="{{ url_for('static', filename='mdb/css/style.css')}}" rel="stylesheet">
+
+    <style>
+    table.table thead th {
+    border-top: none;
+    font-weight: bold !important;
+    padding-right: 30px;
+    background-color: #212529;
+    color: white;
+}
+    html {
+        width: fit-content;
+        }
+
+        .search-result{
+            margin: 30px;
+        }
+        .fa.fa-download{
+            font-size: 16px;
+            padding: 0 5px;
+            color: #428bca;
+            cursor: pointer;
+        }
+        #show-table{
+            margin: 10px 20px;
+        }
+       button{
+      background-color: #FFFF00;
+      font-weight: 500;
+      margin: 0 10px 10px 10px;
+      }
+      td{
+          text-align: center;
+      }
+      .downloadFileAll{
+          margin: 0 5px;
+      }
+
+</style>
+</head>
+<body>
+<div id ="show-table"></div>
+
+<button id="btnExportToCsv" type="button" class="button">Export to CSV</button>
+<button id="" type="button" class="button" onclick="downloadSelected()">Download Selected/Multiple Files</button>
+
+    <div class="search-result">
+        <h2>Results</h2>
+        <div id="jsonData">
+            {{outcome}}
+        </div>
+    </div>
+<!--    </form>-->
+
+</body>
+</html>
+
+<script>
+     var data = document.getElementById('jsonData').innerText;
+    data = data.replace('//','/');
+    data = data.replace(' ','');
+    data = JSON.parse(data);
+    var html = '<table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">';
+    html += '<thead><tr>';
+    var flag = 0;
+    html += '<th>'+'Select File'+'<input type="checkbox" class="downloadFileAll" value="selectAll" onclick=\'(selectAll())\'  name="selectAll"></th>'
+<!--    html += '<th>'+'Select File'+'</th>'-->
+    $.each(data[0], function(index, value){
+        if(index == "Filepath") html += '<th>Download</th>';
+        else html += '<th>'+index+'</th>';
+    });
+    html += '</tr></thead><tbody>';
+     $.each(data, function(index, value){
+         html += '<tr>';
+       var fname='';
+
+        html += '<td><input type="checkbox" class="downloadFile" value='+JSON.stringify(value.Filepath + '\\' + value.Filename)+' onclick=\'(getCheckedData())\'  name="downloadFile"></td>';
+        $.each(value, function(index2, value2){
+            if(index2 == "Filepath"){
+                html += '<td><form method="GET" action="/download_file"><input type="hidden" value='+JSON.stringify(fname)+' name="fname"><input type="hidden" value='+JSON.stringify(value2)+' name="fpath"><input type="submit" value="Download"/></form></td>';
+
+            }else if(index2 == "Filename"){
+                fname = value2;
+                html += '<td>'+value2+'</td>';
+            }else{
+                html += '<td>'+value2+'</td>';
+            }
+            //value2 = value2 ? value2 : 'NA';
+        });
+        html += '</tr>';
+     });
+     html += '</tbody></table>';
+     $('#show-table').html(html);
+
+     jQuery(document).ready(function($){
+        $.noConflict();
+      $('#dtBasicExample').DataTable();
+      $('.dataTables_length').addClass('bs-select');
+     })
+
+     $(".search-result").hide();
+     $("body").show();
+
+    const dataTable = document.getElementById("dtBasicExample");
+    const btnExportToCsv = document.getElementById("btnExportToCsv");
+    let fileNameObj = {};
+        btnExportToCsv.addEventListener("click", () => {
+            const exporter = new TableCSVExporter(dataTable);
+            const csvOutput = exporter.convertToCSV();
+            const csvBlob = new Blob([csvOutput], { type: "text/csv" });
+            const blobUrl = URL.createObjectURL(csvBlob);
+            const anchorElement = document.createElement("a");
+
+            anchorElement.href = blobUrl;
+            anchorElement.download = "table-export.csv";
+            anchorElement.click();
+
+            setTimeout(() => {
+                URL.revokeObjectURL(blobUrl);
+            }, 500);
+        });
+       function downloadSelected(){
+       (async () => {
+  const rawResponse = await fetch("http://127.0.0.1:5000/download_zip", {
+    method: 'POST',
+   headers: {
+                "Content-Type": "application/json;charset=utf-8",
+            },
+    body: JSON.stringify({'a': Object.keys(fileNameObj)})
+  }).then(response => {
+            const reader = response.body.getReader();
+            return new ReadableStream({
+                start(controller) {
+                    return pump();
+
+                    function pump() {
+                        return reader.read().then(({
+                            done,
+                            value
+                        }) => {
+                            if (done) {
+                                controller.close();
+                                return;
+                            }
+                            controller.enqueue(value);
+                            return pump();
+                        });
+                    }
+                }
+            })
+        })
+        .then(stream => new Response(stream))
+        .then(response => response.blob())
+        .then(blob => URL.createObjectURL(blob))
+        .then(url => downloadURI(url))
+
+})();
+
+       }
+       function getCheckedData(v){
+           if($(event.target)[0].checked){
+            fileNameObj[$(event.target)[0].value] = 1;
+           } else{
+            delete fileNameObj[$(event.target)[0].value];
+           }
+           console.log(fileNameObj);
+       }
+       function downloadURI(uri) {
+    var link = document.createElement("a");
+    link.download = 'data.zip';
+    link.href = uri;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    delete link;
+}
+
+function selectAll(){
+            let arr = $('.downloadFile');
+            for(let i=0; i<arr.length; i++){
+                if($(event.target)[0].checked){
+                    arr[i].checked = true;
+                    fileNameObj[arr[i].value] = 1;
+                }else{
+                    arr[i].checked = false;
+                    delete fileNameObj[arr[i].value];
+                }
+            }
+            console.log(fileNameObj);
+       }
+</script>
+
+{% endblock %}

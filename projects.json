@@ -1,0 +1,146 @@
+{
+    "projects": [
+        {
+            "Project ID": "TE.ME.14",
+            "Project Sector": "Technology Media and Entertainment",
+            "Project Sub Sector": "Media and Entertainment",
+            "Project Segment": "Broadcasting",
+            "Project Type": "Market Study",
+            "Project Start Date": "2020-12-30",
+            "RMT Project Name": "Tmt_rmt",
+            "Project Name": "Tmt_test",
+            "Project Partner": [
+                "Rupanshu Ahuja<rupanshu.ahuja@gds.ey.com>"
+            ],
+            "Project Account": "Confidential",
+            "Project Lead": "",
+            "Project Team Member": []
+        },
+        {
+            "Project ID": "CO.HP.15",
+            "Project Sector": "Consumer Products & Retail",
+            "Project Sub Sector": "HPC",
+            "Project Segment": "Fragnances",
+            "Project Type": "Strategy",
+            "Project Start Date": "2020-12-11",
+            "RMT Project Name": "Testing1",
+            "Project Name": "Testing_mark1",
+            "Project Partner": [
+                "Prakhar Rastogi<prakhar.rastogi1@gds.ey.com>"
+            ],
+            "Project Account": "Confidential",
+            "Project Lead": "Yukti Arora<Yukti.Arora3@gds.ey.com>",
+            "Project Team Member": [
+                "Ankit Goel<Ankit.Goel@gds.ey.com>"
+            ]
+        },
+        {
+            "Project ID": "ED.GO.16",
+            "Project Sector": "Education",
+            "Project Sub Sector": "Government and Foundations",
+            "Project Segment": "Federal Educational Authorities",
+            "Project Type": "White papers",
+            "Project Start Date": "2020-12-26",
+            "RMT Project Name": "Testing",
+            "Project Name": "mark2",
+            "Project Partner": [
+                "Shweta Dudi<shweta.dudi@gds.ey.com>"
+            ],
+            "Project Account": "PE/VC",
+            "Project Lead": "Yukti Arora<Yukti.Arora3@gds.ey.com>",
+            "Project Team Member": [
+                "Ankit Goel<Ankit.Goel@gds.ey.com>"
+            ]
+        },
+        {
+            "Project ID": "TE.ME.17",
+            "Project Sector": "Technology Media and Entertainment",
+            "Project Sub Sector": "Media and Entertainment",
+            "Project Segment": "Sports and Games",
+            "Project Type": "Strategy",
+            "Project Start Date": "2020-12-25",
+            "RMT Project Name": "RMT_Sports",
+            "Project Name": "Sport_Proj",
+            "Project Partner": [
+                "Rupanshu Ahuja<rupanshu.ahuja@gds.ey.com>"
+            ],
+            "Project Account": "Confidential_test",
+            "Project Lead": "Mitali Chopra<Mitali.Chopra@gds.ey.com>",
+            "Project Team Member": [
+                "Ankit Goel<Ankit.Goel@gds.ey.com>",
+                "Rahul Singh<Rahul.Singh5@gds.ey.com>"
+            ]
+        },
+        {
+            "Project ID": "FI.BA.18",
+            "Project Sector": "Financial Services",
+            "Project Sub Sector": "Banking",
+            "Project Segment": "Commercial Banks",
+            "Project Type": "Modelling",
+            "Project Start Date": "2021-01-01",
+            "RMT Project Name": "Modelling_Proj",
+            "Project Name": "Modelling_Proj_test",
+            "Project Partner": [],
+            "Project Account": "Strategic Investor",
+            "Project Lead": "Prakhar Rastogi<prakhar.rastogi1@gds.ey.com>",
+            "Project Team Member": [
+                "Gagan Anand<Gagan.Anand1@gds.ey.com>"
+            ]
+        },
+        {
+            "Project ID": "CO.HP.19",
+            "Project Sector": "Consumer Products & Retail",
+            "Project Sub Sector": "HPC",
+            "Project Segment": "Cleaning Products",
+            "Project Type": "VDD",
+            "Project Start Date": "2021-02-05",
+            "RMT Project Name": "Pilot_RMT",
+            "Project Name": "Pilot",
+            "Project Partner": [
+                "Shweta Dudi<shweta.dudi@gds.ey.com>"
+            ],
+            "Project Account": "PE/VC",
+            "Project Lead": "Anuj Bhatia<Anuj.Bhatia1@gds.ey.com>",
+            "Project Team Member": [
+                "Rahul Singh<Rahul.Singh5@gds.ey.com>",
+                "Bhavna Mehta<Bhavna.Mehta@gds.ey.com>"
+            ]
+        },
+        {
+            "Project ID": "CO.F&.21",
+            "Project Sector": "Consumer Products & Retail",
+            "Project Sub Sector": "F&B",
+            "Project Segment": "Food- Processed Meat",
+            "Project Type": "VDD",
+            "Project Start Date": "2021-02-05",
+            "RMT Project Name": "rmt_mark1",
+            "Project Name": "mark1",
+            "Project Partner": [
+                "Vishal Gupta<vishal.gupta3@gds.ey.com>"
+            ],
+            "Project Account": "PE/VC",
+            "Project Lead": "Aditi Kapoor<Aditi.Kapoor1@gds.ey.com>",
+            "Project Team Member": [
+                "Aarti Aggarwal<Aarti.Aggarwal@gds.ey.com>"
+            ]
+        },
+        {
+            "Project ID": "AM.IN.22",
+            "Project Sector": "AMM",
+            "Project Sub Sector": "Industrial Products",
+            "Project Segment": "Pipes Pumps & Valves",
+            "Project Type": "Strategy",
+            "Project Start Date": "2021-02-06",
+            "RMT Project Name": "AMM_rmt",
+            "Project Name": "AMM_test",
+            "Project Partner": [
+                "Shweta Dudi<shweta.dudi@gds.ey.com>"
+            ],
+            "Project Account": "Strategic Investor",
+            "Project Lead": "Prakhar Rastogi<prakhar.rastogi1@gds.ey.com>",
+            "Project Team Member": [
+                "Aarti Aggarwal<Aarti.Aggarwal@gds.ey.com>"
+            ]
+        }
+    ]
+}
